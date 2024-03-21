@@ -26,16 +26,23 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <a <?php if ($page == "home") { ?> class="active" <?php } ?> href="index.php">Home</a>
 
             </div>
+      
             <div id='content'>
-                <?php require_once("tpl/$page.php") ?>
+                 <?php
+    {
+        require_once("tpl/$page.php");
+    }
+    ?>
             </div>
         </div>
     </body>
     <script src="javascript/countdown.js"></script>
     <script src="javascript/checken.js"></script>
+
     <script>
         function user_logout() {
             window.location.href = 'index.php?page=login&event=user_logout';
         }
     </script>
+ 
 </html>

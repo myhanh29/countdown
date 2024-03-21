@@ -15,11 +15,12 @@ class register extends controller {
             $lastname = htmlspecialchars($_POST['lastname']);
             $email = htmlspecialchars($_POST['email']);
             $password = htmlspecialchars($_POST['password']);
-            $this->databaseConn->add('visiter', $firstname, $lastname, $email, $password);
-            $this->databaseConn->add('visiter', $firstname, $lastname, $email, $password);
+            $password= md5($password);
+            $this->databaseConn->add('user', $firstname, $lastname, $email, $password);
+        
             session_start();
             $_SESSION['email'] = $email; 
-            $_SESSION['password'] = $password;
+            $_SESSION['password'] = $passwordword;
 
             header("Location:index.php");
             exit();
