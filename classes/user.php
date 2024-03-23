@@ -20,23 +20,22 @@ class user{
                     $validPassword = false;
                       break;
                 }
-         
+            }
            if ($validPassword == TRUE) {
-               
+                $password= md5($password);
                 $query = "SELECT email, password FROM user WHERE email = '" . $email . "' AND password ='$password'";
+               
                 $checkU = mysqli_query($this->conn, $query)
                         or die(mysqli_error($this->conn))
                 ;
 
- echo mysqli_num_rows($checkU) . "<br>";
-
-                if (mysqli_num_rows($checkU) >=0) {
+                if (mysqli_num_rows($checkU) >0) {
  //echo "login success";
  
                     header("Location: index.php");
                     $_SESSION["email"] = $email;
                 }
-            }
+            
     }
 } 
   function logout() {

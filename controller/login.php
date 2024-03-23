@@ -7,7 +7,7 @@ class login extends controller {
         if (isset($_POST['email']) && isset($_POST['password'])) {
 
             $password = $_REQUEST['password'];
-            $password=md5($password);
+            
             $email = $_REQUEST['email'];
             
             $user = new user();
