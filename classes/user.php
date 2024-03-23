@@ -12,9 +12,9 @@ class user{
     
     public function login($password,$email)
     {
-        $password=md5($password);
         $disallowed_values = array('"', "'");
             $validPassword = true;
+          
             foreach ($disallowed_values as $value) {
                 if (strpos($password, $value) !== false) {
                     $validPassword = false;
@@ -22,16 +22,17 @@ class user{
                 }
          
            if ($validPassword == TRUE) {
+               
                 $query = "SELECT email, password FROM user WHERE email = '" . $email . "' AND password ='$password'";
                 $checkU = mysqli_query($this->conn, $query)
                         or die(mysqli_error($this->conn))
                 ;
 
-// echo $query . "<br>";
+ echo mysqli_num_rows($checkU) . "<br>";
 
-                if (mysqli_num_rows($checkU) > 0) {
-//   echo "login success";
-//   
+                if (mysqli_num_rows($checkU) >=0) {
+ //echo "login success";
+ 
                     header("Location: index.php");
                     $_SESSION["email"] = $email;
                 }

@@ -20,7 +20,7 @@ class register extends controller {
         
             session_start();
             $_SESSION['email'] = $email; 
-            $_SESSION['password'] = $passwordword;
+            $_SESSION['password'] = $password;
 
             header("Location:index.php");
             exit();

@@ -37,7 +37,7 @@ class resetPassword extends controller {
 
                 exit();
             } else {
-                session_start();
+                
                 $_SESSION['announcement'] = "Something went wrong!";
                 header("Location: index.php");
 

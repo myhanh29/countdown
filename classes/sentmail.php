@@ -66,7 +66,7 @@ class sentmail {
 // Redirect to index.php
             header("Location: index.php");
         } catch (Exception $e) {
-            session_start();
+            
             $_SESSION['announcement'] = "Message could not be sent. Mailer Error: {$this->mail->ErrorInfo}";
             header("Location: index.php");
         }

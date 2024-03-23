@@ -11,11 +11,11 @@ class database {
     public function connect() {
         $servername = DBSERVER;
         $username = DBUSER;
-        $passwordword = DBPASS;
+        $password = DBPASS;
         $database = DBNAME;
 
 // Create connection
-        $conn = new mysqli($servername, $username, $passwordword, $database);
+        $conn = new mysqli($servername, $username, $password, $database);
 
 // Check connection
         if ($conn->connect_error) {
@@ -89,9 +89,9 @@ reg_date DATETIME
         }
     }
 
-    public function add($tableName, $firstname, $lastname, $email, $passwordword) {
+    public function add($tableName, $firstname, $lastname, $email, $password) {
         $sql = "INSERT INTO $tableName (firstname, lastname, email,PASSWORD)
-    VALUES ('$firstname','$lastname','$email','$passwordword')";
+    VALUES ('$firstname','$lastname','$email','$password')";
         if ($this->conn->query($sql) === TRUE) {
             return 1;
         } else {

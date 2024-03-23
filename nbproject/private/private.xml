@@ -3,15 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/web/htdocs/Countdownprojekt/classes/sentmail.php</file>
             <file>file:/C:/web/htdocs/Countdownprojekt/tpl/resetRequest.php</file>
-            <file>file:/C:/web/htdocs/Countdownprojekt/tpl/newPassword.php</file>
+            <file>file:/C:/web/htdocs/Countdownprojekt/tpl/resetPassword.php</file>
             <file>file:/C:/web/htdocs/Countdownprojekt/classes/user.php</file>
+            <file>file:/C:/web/htdocs/Countdownprojekt/controller/login.php</file>
+            <file>file:/C:/web/htdocs/Countdownprojekt/tpl/register.php</file>
+            <file>file:/C:/web/htdocs/Countdownprojekt/tpl/login.php</file>
+            <file>file:/C:/web/htdocs/Countdownprojekt/controller/register.php</file>
+            <file>file:/C:/web/htdocs/Countdownprojekt/controller/home.php</file>
+            <file>file:/C:/web/htdocs/Countdownprojekt/classes/sentmail.php</file>
             <file>file:/C:/web/htdocs/Countdownprojekt/index.php</file>
-            <file>file:/C:/web/htdocs/Countdownprojekt/router.php</file>
-            <file>file:/C:/web/htdocs/Countdownprojekt/tpl/layout.php</file>
+            <file>file:/C:/web/htdocs/Countdownprojekt/javascript/countdown.js</file>
             <file>file:/C:/web/htdocs/Countdownprojekt/controller/resetRequest.php</file>
             <file>file:/C:/web/htdocs/Countdownprojekt/controller/resetPassword.php</file>
+            <file>file:/C:/web/htdocs/Countdownprojekt/tpl/home.php</file>
+            <file>file:/C:/web/htdocs/Countdownprojekt/tpl/appointment.php</file>
         </group>
     </open-files>
 </project-private>

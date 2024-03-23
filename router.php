@@ -3,7 +3,7 @@
     if(!isset($_GET["page"])){
         $page = "home";
     }
-    else if($_GET["page"]!="login" && $_GET["page"]!="register" && $_GET["page"]!="home" && $_GET["page"]!="logout" && $_GET["page"]!="resetRequest"&& $_GET["page"]!="resetPassword" )
+    else if($_GET["page"]!="login" && $_GET["page"]!="register" && $_GET["page"]!="home" && $_GET["page"]!="logout" && $_GET["page"]!="resetRequest"&& $_GET["page"]!="resetPassword"&& $_GET["page"]!="appointment" )
     {
         die("NOT FOUND");
       

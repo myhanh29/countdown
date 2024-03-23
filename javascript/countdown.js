@@ -4,7 +4,7 @@
  */
 
 
-var endDate = new Date('2024-02-25T11:00:00Z');
+var endDate = new Date('2024-04-01T11:00:00Z');
 var startDate = new Date();
 
 var distance = endDate.getTime() - startDate.getTime(); 
