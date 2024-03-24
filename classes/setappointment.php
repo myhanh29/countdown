@@ -6,7 +6,7 @@
  */
 require_once 'database.php';
 require_once 'user.php';
-class sentappointment {
+class setappointment {
 
     public $conn;
 
@@ -14,23 +14,27 @@ class sentappointment {
         $db = new Database();
         $this->conn = $db->connect();
     }
-    
-    public function takeuserid($firstname) {
-        $sql="SELECT id FROM user WHERE firstname=$firstname";
-        
-        if ($this->conn->query($sql) === TRUE) {
-            return $userid=$sql;
-        } else {
-            return 0;
-        }  
-        
+    /*public function takeuserid() {
+    $sql = "SELECT MAX(ID) FROM user";
+    $result = $this->conn->query($sql);
+
+    if ($result && $result->num_rows > 0) {
+          $row = $result->fetch_assoc();
+        //return $row['id'];
+        echo $row['id'];
+    } else {
+        return 0;
     }
-    public function appointment($firstname,$description,$datetime,$isactive,$userid)
+}*/
+    
+    public function appointment($terminname,$description,$datetime,$isactive,$userid)
     {
-        $sql = "INSERT INTO appointment (firstname, description, date, is active, userid)
-    VALUES ('$firstname','$description','$datetime','$isactive','$userid')";
+        $sql = "INSERT INTO appointment (name, description, date, is_active, userid)
+    VALUES ('$terminname','$description','$datetime','$isactive'-'0','$userid')";
         if ($this->conn->query($sql) === TRUE) {
+            header("Location: index.php");
             return 1;
+            
         } else {
             return 0;
         }

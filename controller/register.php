@@ -19,8 +19,8 @@ class register extends controller {
             $this->databaseConn->add('user', $firstname, $lastname, $email, $password);
         
             session_start();
-            $_SESSION['email'] = $email; 
-            $_SESSION['password'] = $password;
+            $_SESSION["user"]['email'] = $email; 
+            $_SESSION["user"]['password'] = $password;
 
             header("Location:index.php");
             exit();

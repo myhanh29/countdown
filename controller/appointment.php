@@ -11,15 +11,18 @@ class appointment{
     
      public function user_appointment() {
 
-        if (isset($_POST['firstname']) && isset($_POST['description'])&& isset($_POST['datetime'])&& isset($_POST['isactive'])) {
-
-            $firstname= $_REQUEST['firstname'];
+        if (isset($_POST['terminname']) && isset($_POST['description'])&& isset($_POST['datetime'])&& isset($_POST['isactive'])) {
+            $email=$_SESSION['user']['email'];
+            $userid=$_SESSION['user']['id'];
+            
+            $terminname= $_REQUEST['terminname'];
             $description = $_REQUEST['description'];
             $datetime= $_REQUEST['datetime'];
-            $isactive= $_REQUEST['isactive'];
-            $appointment = new setappointment();
-            $appointment->userid($firstname);
-            $appointment->appointment($firstname,$description,$datetime,$isactive,$userid);
+            $isactive= $_POST['isactive'];
+        
+            $setappointment = new setappointment();
+            
+            $setappointment->appointment($terminname,$description,$datetime,$isactive,$userid);
             
         }
     }
