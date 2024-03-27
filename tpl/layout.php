@@ -19,20 +19,22 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <div class="topnav">
                 <?php if (!isset($_SESSION["user"]["email"])) { ?><a href="index.php?page=login" <?php if ($page == "login") { ?> class='active' <?php } ?> >Login</a><?php } ?>
                 <?php if (!isset($_SESSION["user"]["email"])) { ?><a href="index.php?page=register" <?php if ($page == "register") { ?> class='active' <?php } ?> >Register</a> <?php } ?>
-                <?php if (isset( $_SESSION["user"]["email"])) { ?>
+
+                <?php if (isset($_SESSION["user"]["email"])) { ?>
                     <a href="javascript: user_logout();">Logout</a>
                 <?php } ?>
+                    
+                 <?php if (isset($_SESSION["user"]["email"])) { ?><a href="index.php?page=appointmentlist&event=user_appointmentlist" <?php if ($page == "appointmentlist") { ?> class='active' <?php } ?> >Appointments</a> <?php } ?>
 
                 <a <?php if ($page == "home") { ?> class="active" <?php } ?> href="index.php">Home</a>
 
             </div>
-      
+
             <div id='content'>
-                 <?php
-    {
-        require_once("tpl/$page.php");
-    }
-    ?>
+                <?php {
+                    require_once("tpl/$page.php");
+                }
+                ?>
             </div>
         </div>
     </body>
@@ -44,5 +46,5 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             window.location.href = 'index.php?page=login&event=user_logout';
         }
     </script>
- 
+
 </html>

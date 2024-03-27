@@ -3,7 +3,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to c
 Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
 */
  
-
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
 body{
   height: 100%;
   margin: 0;

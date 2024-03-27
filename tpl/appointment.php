@@ -1,5 +1,5 @@
 <h1>TERMIN ERSTELLEN</h1>
-<form id="myform" action="index.php?page=appointment&event=user_appointment" method="post">
+<form id="myappointment" action="index.php?page=appointment&event=user_appointment" method="post">
     <div>Name des Termins</div>
     <input type="text" name="terminname" id="terminname" >
     <div>Beschreibung</div>
