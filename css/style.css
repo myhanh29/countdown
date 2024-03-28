@@ -10,21 +10,20 @@ body{
 }
 
 body{
-  background-image: url('../img/template.png');
+  background-image: url('../img/template.jpeg');
   height: 100vh;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 .container{
-
   left: 50%;
   text-align: center;
   font-weight: bold;
  
 }
 h1 {
-   top: 30%;
+  top: 30%;
   font-size: 60px;
   text-align: center;
   color:black;
@@ -35,7 +34,14 @@ h1 {
   text-align: center;
   color:black;
 }
+#content {
+margin-top: 100px;
 
+}
+
+/*table{
+    margin: 0 auto;
+}*/
 .time{
     
   font-size: 60px;
@@ -55,7 +61,7 @@ h1 {
   position: fixed;
   top: 0;
   width: 100%;
-  left: -1%;
+  left: 0%;
   z-index: 3; /* Set a higher z-index */
   bottom:auto;
 }

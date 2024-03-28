@@ -11,6 +11,6 @@
     <input type="checkbox" name="isactive" name="isactive" value="1" />
 
     <br>    <br>
-    <button type="submit">Submit</button>
+    <button type="submit">Einreichen</button>
 </form>
 

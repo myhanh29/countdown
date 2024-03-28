@@ -1,4 +1,4 @@
-<h1>DATE</h1>
+<h1>DATUM</h1>
 <div id="day">15/04/2024</div>
 <br>
 <br>

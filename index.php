@@ -12,7 +12,7 @@ session_start();
     // Check if the announcement message is set
     if (isset($_SESSION['announcement'])) {
         // Display the announcement message
-        echo '<div style="background-color: #FFFFCC; padding: 10px; text-align: center;">' . $_SESSION['announcement'] . '</div>';
+        echo '<div style="background-color: #FFFFCC; padding: 10px; max-width: 400px; margin: 0 auto; text-align: center;">' . $_SESSION['announcement'] . '</div>';
         
         // Unset the announcement message to prevent it from being displayed again
         unset($_SESSION['announcement']);

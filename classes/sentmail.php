@@ -61,13 +61,13 @@ class sentmail {
             session_start();
 
 // Set the announcement message
-            $_SESSION['announcement'] = "Reset password link has been sent to your email!";
+            $_SESSION['announcement'] = "Der Link zur Aenderung des Passworts wurde an Ihre E-Mail gesendet!";
 
 // Redirect to index.php
             header("Location: index.php");
         } catch (Exception $e) {
             
-            $_SESSION['announcement'] = "Message could not be sent. Mailer Error: {$this->mail->ErrorInfo}";
+            $_SESSION['announcement'] = "Nachricht konnte nicht gesendet werden. Mailer-Fehler: {$this->mail->ErrorInfo}";
             header("Location: index.php");
         }
         exit();

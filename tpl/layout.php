@@ -17,16 +17,16 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <div class="image"></div>
         <div class='container'>
             <div class="topnav">
-                <?php if (!isset($_SESSION["user"]["email"])) { ?><a href="index.php?page=login" <?php if ($page == "login") { ?> class='active' <?php } ?> >Login</a><?php } ?>
-                <?php if (!isset($_SESSION["user"]["email"])) { ?><a href="index.php?page=register" <?php if ($page == "register") { ?> class='active' <?php } ?> >Register</a> <?php } ?>
+                <?php if (!isset($_SESSION["user"]["email"])) { ?><a href="index.php?page=login" <?php if ($page == "login") { ?> class='active' <?php } ?> >Anmelden</a><?php } ?>
+                <?php if (!isset($_SESSION["user"]["email"])) { ?><a href="index.php?page=register" <?php if ($page == "register") { ?> class='active' <?php } ?> >Registieren</a> <?php } ?>
 
                 <?php if (isset($_SESSION["user"]["email"])) { ?>
-                    <a href="javascript: user_logout();">Logout</a>
+                    <a href="javascript: user_logout();">Abmelden</a>
                 <?php } ?>
                     
-                 <?php if (isset($_SESSION["user"]["email"])) { ?><a href="index.php?page=appointmentlist&event=user_appointmentlist" <?php if ($page == "appointmentlist") { ?> class='active' <?php } ?> >Appointments</a> <?php } ?>
+                 <?php if (isset($_SESSION["user"]["email"])) { ?><a href="index.php?page=appointmentlist&event=user_appointmentlist" <?php if ($page == "appointmentlist") { ?> class='active' <?php } ?> >Termine</a> <?php } ?>
 
-                <a <?php if ($page == "home") { ?> class="active" <?php } ?> href="index.php">Home</a>
+                <a <?php if ($page == "home") { ?> class="active" <?php } ?> href="index.php">Startseite</a>
 
             </div>
 

@@ -1,16 +1,16 @@
-<h1>REGISTER</h1>
+<h1>REGISTIEREN</h1>
 <form id="myform" action="index.php?page=register&event=user_register" method="post">
-    <div>First name</div>
+    <div>Vorname</div>
     <input type="text" name="firstname" id="firstname" >
-    <div>Last name</div>
+    <div>Nachname</div>
     <input type="text" name="lastname" id="lastname" >
     <div>Email</div>
     <input type="text" name="email" id="email" >
-    <div>Password</div>
+    <div>Passwort</div>
     <input type="password" name="password" id="password" >
-    <div>Password (repeated)</div>
+    <div>Passwort (wiederholt)</div>
     <input type="password" name="password1" id="password1">
     <br>    <br>
-    <button type="submit">Submit</button>
+    <button type="submit">Einreichen</button>
 </form>
 

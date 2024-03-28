@@ -29,7 +29,7 @@ class database {
         if ($this->conn->query($sql) === TRUE) {
             return 1;
         } else {
-            echo "Error creating database: " . $this->error;
+            echo "Fehler beim Erstellen der Datenbank: " . $this->error;
             return 0;
         }
     }
@@ -47,12 +47,12 @@ email VARCHAR(50)
 )";
 
             if ($this->conn->query($sql) === TRUE) {
-                echo "Table $tableName created successfully";
+                echo "Tabelle $tableName wurde erfolgreich erstellt";
             } else {
-                echo "Error creating table: " . $this->conn->error;
+                echo "Fehler beim Erstellen der Datenbank: " . $this->conn->error;
             }
         } else {
-            echo "Table $tableName already exists";
+            echo "Tabelle $tableName ist bereits vorhanden";
         }
     }
 
@@ -80,12 +80,12 @@ reg_date DATETIME
 )";
 
             if ($this->conn->query($sql) === TRUE) {
-                echo "Table $tableName created successfully";
+                echo "Tabelle $tableName wurde erfolgreich erstellt";
             } else {
-                echo "Error creating table: " . $this->conn->error;
+                echo "Fehler beim Erstellen der Datenbank: " . $this->conn->error;
             }
         } else {
-            echo "Table $tableName already exists";
+            echo "Tabelle $tableName ist bereits vorhanden";
         }
     }
 
