@@ -53,7 +53,5 @@ if ($_GET['event'] == 'user_appointment') {
 }
     }
 }
-
-
     
     ?>
