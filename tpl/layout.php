@@ -25,8 +25,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <?php } ?>
 
                 <?php if (isset($_SESSION["user"]["email"])) { ?><a href="index.php?page=appointmentlist&event=user_appointmentlist" <?php if ($page == "appointmentlist") { ?> class='active' <?php } ?> >Termine</a> <?php } ?>
-                <?php if (isset($_SESSION["user"]["email"])) { ?><a href="index.php?page=appointment&event=user_appointment" <?php if ($page == "appointment") { ?> class='active' <?php } ?> >Termine erstellen</a> <?php } ?>
-
+                <?php if (isset($_SESSION["user"]["email"])) { ?>
+                    <?php if ($page == "appointment" && $event == "user_appointment") { ?>
+                        <a href="index.php?page=appointment&event=user_appointment" class='active'>Termine erstellen</a>
+                    <?php } else if ($page == "appointment" && $event == "user_editappointment") { ?>
+                        <a href="index.php?page=appointment&event=user_editappointment" class='active'>Termine bearbeiten</a>
+                    <?php } ?>
+                <?php } ?>
                 <a <?php if ($page == "home") { ?> class="active" <?php } ?> href="index.php">Startseite</a>
 
             </div>

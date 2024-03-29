@@ -3,6 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Other/javascript.js to edit this template
  */
 function myFunction() {
-  confirm("Möchten Sie den Termin löschen?");
+  if (confirm("Möchten Sie den Termin löschen?") == true) {
+    
+  } else {
+     event.preventDefault();  
+  }
 }
 

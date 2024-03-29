@@ -22,7 +22,7 @@ if ($_GET['event'] == 'user_appointment') {
     <button type="submit">Einreichen</button>
 </form>
 <?php
-} else if(isset($_GET['id']))
+} else if($_GET['event'] == 'user_editappointment')
 {      
     $id=$_GET['id'];
     $query = "SELECT * FROM appointment WHERE id=$id";
