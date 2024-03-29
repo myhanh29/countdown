@@ -15,7 +15,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
     <body>
         <div class="image"></div>
-        <div class='container'>
+        <div class="<?php echo ($page === 'appointmentlist') ? 'container1' : 'container'; ?>">
             <div class="topnav">
                 <?php if (!isset($_SESSION["user"]["email"])) { ?><a href="index.php?page=login" <?php if ($page == "login") { ?> class='active' <?php } ?> >Anmelden</a><?php } ?>
                 <?php if (!isset($_SESSION["user"]["email"])) { ?><a href="index.php?page=register" <?php if ($page == "register") { ?> class='active' <?php } ?> >Registieren</a> <?php } ?>
@@ -23,15 +23,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <?php if (isset($_SESSION["user"]["email"])) { ?>
                     <a href="javascript: user_logout();">Abmelden</a>
                 <?php } ?>
-                    
-                 <?php if (isset($_SESSION["user"]["email"])) { ?><a href="index.php?page=appointmentlist&event=user_appointmentlist" <?php if ($page == "appointmentlist") { ?> class='active' <?php } ?> >Termine</a> <?php } ?>
+
+                <?php if (isset($_SESSION["user"]["email"])) { ?><a href="index.php?page=appointmentlist&event=user_appointmentlist" <?php if ($page == "appointmentlist") { ?> class='active' <?php } ?> >Termine</a> <?php } ?>
 
                 <a <?php if ($page == "home") { ?> class="active" <?php } ?> href="index.php">Startseite</a>
 
             </div>
 
             <div id='content'>
-                
+
                 <?php {
                     require_once("tpl/$page.php");
                 }
