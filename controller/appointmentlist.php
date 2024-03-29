@@ -14,6 +14,8 @@ public function user_appointmentlist() {
   $userid=$_SESSION["user"]["id"];
   $setappointment = new setappointment();
             
-  $setappointment->appointmentlist($userid);
+ $setappointment->appointmentlist($userid);
+ 
+ 
 }
 }

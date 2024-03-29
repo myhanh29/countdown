@@ -37,7 +37,6 @@ class user {
                 $userid = $row['id'];
                 $_SESSION["user"]["email"] = $email;
                 $_SESSION["user"]["id"] = $userid;
-
                 header("Location: index.php?page=appointment&event=user_appointment");
             }
         }
@@ -46,11 +45,14 @@ class user {
     function logout() {
 // Initialize the session.
 // Unset all of the session variables.
+        if(isset($_SESSION["user"]["email"])&& isset($_SESSION["user"]["id"]))
+        {
         unset($_SESSION["user"]["email"]);
         unset($_SESSION["user"]["id"]);
 // Finally, destroy the session.    
 // Include URL for Login page to login again.
         header("Location: index.php?section=home");
         exit();
+        }
     }
 }

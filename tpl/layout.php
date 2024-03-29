@@ -31,6 +31,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             </div>
 
             <div id='content'>
+                
                 <?php {
                     require_once("tpl/$page.php");
                 }
