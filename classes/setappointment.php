@@ -55,5 +55,18 @@ class setappointment {
             
         }
     }
+    
+    public function deleteappointment($id)
+    {
+      $sql = "DELETE FROM appointment WHERE id='$id' ";
+    if ($this->conn->query($sql) === TRUE) {
+       header("Location: index.php?page=appointmentlist&event=user_appointmentlist");
+    } else {
+        echo "Fehler beim Löschen eines Datensatzes: " . $this->conn->error;
+    }
+
+    $this->conn->close();
+
+    }
 
 }

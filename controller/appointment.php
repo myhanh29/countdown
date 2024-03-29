@@ -45,4 +45,10 @@ class appointment {
             }
         }
     }
+    public function user_deleteappointment() {
+        $id = $_GET['id'];
+        
+        $setappointment = new setappointment();
+        $setappointment->deleteappointment($id);
+    }
 }

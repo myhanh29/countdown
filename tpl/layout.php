@@ -41,6 +41,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     </body>
     <script src="javascript/countdown.js"></script>
     <script src="javascript/checken.js"></script>
+    <script src="javascript/confirm.js"></script>
 
     <script>
         function user_logout() {

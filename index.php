@@ -7,7 +7,6 @@
 </head>
 <body>
 <?php
-//error_reporting(1);
 session_start();
     // Check if the announcement message is set
     if (isset($_SESSION['announcement'])) {

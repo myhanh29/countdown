@@ -25,7 +25,7 @@ $appointments = $appointmentlist->user_appointmentlist(); ?>
                 <td>
                     <a href='index.php?page=appointment&event=user_editappointment&id=<?php echo $row['id']; ?>' style='background-color: #fff2e6;border: 1px solid black; text-decoration: none; color: black;'>Bearbeiten</a>
                     <br>
-                    <a href='' style='background-color: #fff2e6;border: 1px solid black; text-decoration: none; color: black;'>Loeschen</a>
+                    <a href='index.php?page=appointment&event=user_deleteappointment&id=<?php echo $row['id']; ?>' onclick="myFunction()" style='background-color: #fff2e6;border: 1px solid black; text-decoration: none; color: black;'>Loeschen</a>
                 </td>
             </tr>
         
