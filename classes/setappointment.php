@@ -42,7 +42,24 @@ class setappointment {
         return $appointments;
       
     }
+ 
+    
+   //Pruefen der Ersteller des Termines
+    public function checkappointment($userid,$id)
+    {
+        $query = "SELECT userid FROM appointment WHERE id='$id' AND userid='$userid'";
+        
 
+            $checkU = mysqli_query($this->conn, $query)
+                    or die(mysqli_error($this->conn))
+            ;
+
+            if (mysqli_num_rows($checkU) == 0) {
+                header("Location: index.php?page=appointmentlist&event=user_appointmentlist");
+                exit;
+            }
+            
+    }
     public function editappointment($terminname2, $description2, $datetime2, $isactive2, $id) {
        
         $query = "UPDATE appointment SET name='$terminname2', description='$description2', date='$datetime2', is_active=('$isactive2'-'0') WHERE id='$id'";
