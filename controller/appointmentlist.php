@@ -7,15 +7,28 @@
 require_once 'classes/database.php';
 require_once 'classes/setappointment.php';
 
-class appointmentlist{
+class appointmentlist {
 
-public function user_appointmentlist() {
+    public function user_appointmentlist() {
 
-  $userid=$_SESSION["user"]["id"];
-  $setappointment = new setappointment();
-       
-  $appointments = $setappointment->appointmentlist($userid);
+        $userid = $_SESSION["user"]["id"];
+        $setappointment = new setappointment();
+
+        $appointments = $setappointment->appointmentlist($userid);
+        date_default_timezone_set('Europe/Berlin');
+        $today = date("Y-m-d H:i:s");
+
+        foreach ($appointments as $row) {
+            $appointmentdate = date("Y-m-d H:i:s", strtotime($row['date']));
+
+            if ($appointmentdate < $today) {
+
+                $setappointment = new setappointment();
+                $setappointment->deleteappointment($row['id']);
+            }
+        }
+
+
         return $appointments;
- 
-}
+    }
 }

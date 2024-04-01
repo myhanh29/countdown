@@ -14,6 +14,7 @@ class home extends controller{
       $countdowntimer = new countdowntimer();
       
       $appointments =$countdowntimer->countdown($userid);
+      
       return $appointments;
       }
      

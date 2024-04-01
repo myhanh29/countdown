@@ -51,4 +51,6 @@ class appointment {
         $setappointment = new setappointment();
         $setappointment->deleteappointment($id);
     }
+
+   
 }
