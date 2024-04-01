@@ -20,7 +20,7 @@ class setappointment {
         $sql = "INSERT INTO appointment (name, description, date, is_active, userid)
     VALUES ('$terminname','$description','$datetime','$isactive'-'0','$userid')";
         if ($this->conn->query($sql) === TRUE) {
-            header("Location: index.php");
+            header("Location: index.php?page=home&event=user_countdown");
             return 1;
         } else {
             return 0;
@@ -28,7 +28,7 @@ class setappointment {
     }
 
     public function appointmentlist($userid) {
-     $appointments=array();
+        $appointments = array();
 // Select database
         mysqli_select_db($this->conn, "countdown") or die(mysqli_error());
 // SQL query
@@ -36,32 +36,33 @@ class setappointment {
 
 // Execute the query (the recordset $rs contains the result)
         $rs = mysqli_query($this->conn, $strSQL);
-         while ($row = mysqli_fetch_array($rs)) {
+        while ($row = mysqli_fetch_array($rs)) {
             $appointments[] = $row;
         }
         return $appointments;
-      
     }
- 
-    
-   //Pruefen der Ersteller des Termines
-    public function checkappointment($userid,$id)
-    {
-        $query = "SELECT userid FROM appointment WHERE id='$id' AND userid='$userid'";
-        
 
-            $checkU = mysqli_query($this->conn, $query)
-                    or die(mysqli_error($this->conn))
-            ;
-
-            if (mysqli_num_rows($checkU) == 0) {
-                header("Location: index.php?page=appointmentlist&event=user_appointmentlist");
-                exit;
-            }
-            
+    //Pruefen der Ersteller des Termines
+    public function checkappointment($userid, $id) {
+        $query = "SELECT * FROM appointment WHERE id='$id' AND userid='$userid'";
+        echo $query;
+        $checkU = mysqli_query($this->conn, $query)
+                or die(mysqli_error($this->conn))
+        ;
+        echo mysqli_num_rows($checkU);
+        if (mysqli_num_rows($checkU) == 0) {
+            echo "ne";
+            header("Location: index.php?page=appointmentlist&event=user_appointmentlist");
+            exit;
+        }
+        /* else
+          {
+          echo "ok";
+          exit;
+          } */
     }
+
     public function editappointment($terminname2, $description2, $datetime2, $isactive2, $id) {
-       
         $query = "UPDATE appointment SET name='$terminname2', description='$description2', date='$datetime2', is_active=('$isactive2'-'0') WHERE id='$id'";
         $query_run = mysqli_query($this->conn, $query);
         if ($query_run) {
@@ -69,21 +70,17 @@ class setappointment {
             header('Location: index.php?page=appointmentlist&event=user_appointmentlist');
         } else {
             $_SESSION['announcement'] = "Etwas ist schief gelaufen!";
-            
         }
     }
-    
-    public function deleteappointment($id)
-    {
-      $sql = "DELETE FROM appointment WHERE id='$id' ";
-    if ($this->conn->query($sql) === TRUE) {
-       header("Location: index.php?page=appointmentlist&event=user_appointmentlist");
-    } else {
-        echo "Fehler beim Löschen eines Datensatzes: " . $this->conn->error;
+
+    public function deleteappointment($id) {
+        $sql = "DELETE FROM appointment WHERE id='$id' ";
+        if ($this->conn->query($sql) === TRUE) {
+            header("Location: index.php?page=appointmentlist&event=user_appointmentlist");
+        } else {
+            echo "Fehler beim Löschen eines Datensatzes: " . $this->conn->error;
+        }
+
+        $this->conn->close();
     }
-
-    $this->conn->close();
-
-    }
-
 }

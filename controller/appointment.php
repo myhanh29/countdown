@@ -29,20 +29,17 @@ class appointment {
 
     public function user_editappointment() {
 
-        if ($_SESSION['user']['id']) {
-            $id=$_GET['id'];
-            $userid = $_SESSION['user']['id'];
-            $setappointment = new setappointment();
-            $setappointment->checkappointment($userid,$id);
+        if (isset($_SESSION['user']['id'])) {
+
             if (isset($_POST['edit_terminname']) || isset($_POST['edit_description']) || isset($_POST['edit_datetime']) || isset($_POST['edit_isactive'])) {
-
-
                 $id = $_POST['id'];
+                $userid = $_SESSION['user']['id'];
+                $setappointment = new setappointment();
+                $setappointment->checkappointment($userid, $id);
                 $terminname2 = $_POST['edit_terminname'];
                 $description2 = $_POST['edit_description'];
                 $datetime2 = $_POST['edit_datetime'];
                 $isactive2 = $_POST['edit_isactive'];
-
                 $setappointment->editappointment($terminname2, $description2, $datetime2, $isactive2, $id);
             }
         }

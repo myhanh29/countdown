@@ -21,39 +21,45 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <?php if (!isset($_SESSION["user"]["email"])) { ?><a href="index.php?page=register" <?php if ($page == "register") { ?> class='active' <?php } ?> >Registieren</a> <?php } ?>
 
                 <?php if (isset($_SESSION["user"]["email"])) { ?>
-                    <a href="javascript: user_logout();">Abmelden</a>
+                <a href="javascript: user_logout();">Abmelden</a>
                 <?php } ?>
 
                 <?php if (isset($_SESSION["user"]["email"])) { ?><a href="index.php?page=appointmentlist&event=user_appointmentlist" <?php if ($page == "appointmentlist") { ?> class='active' <?php } ?> >Termine</a> <?php } ?>
+                
+              <?php if (isset($_SESSION["user"]["email"])) { ?>
+                <a href="index.php?page=appointment&event=user_appointment"  <?php if ($page == "appointment" && $event == "user_appointment") { ?>class='active'<?php }  ?>>Termine erstellen</a>
+              <?php } ?>
+                
+               <?php if (isset($_SESSION["user"]["email"])) { ?>
+               <?php if ($page == "appointment" && $event == "user_editappointment") { ?>
+                <a href="index.php?page=appointment&event=user_editappointment" class='active'>Termine bearbeiten</a>
+                <?php }} ?>
+           
                 <?php if (isset($_SESSION["user"]["email"])) { ?>
-                    <a href="index.php?page=appointment&event=user_appointment"  <?php if ($page == "appointment") { ?>class='active'<?php } ?>>Termine erstellen</a>
-                <?php } else if ($page == "appointment" && $event == "user_editappointment") { ?>
-                    <a href="index.php?page=appointment&event=user_editappointment" class='active'>Termine bearbeiten</a>
-                <?php } ?>
-                <?php if (isset($_SESSION["user"]["email"])) { ?>
-                    <a <?php if ($page == "home") { ?> class="active" <?php } ?> href="index.php?page=home&event=user_countdown">Startseite</a>
+                <a <?php if ($page == "home") { ?> class="active" <?php } ?> href="index.php?page=home&event=user_countdown">Startseite</a>
                 <?php } else { ?>
-                    <a <?php if ($page == "home") { ?> class="active" <?php } ?> href="index.php">Startseite</a>
+                <a <?php if ($page == "home") { ?> class="active" <?php } ?> href="index.php">Startseite</a>
                 <?php } ?>
             </div>
 
             <div id='content'>
 
-                <?php
-                require_once("tpl/$page.php");
-                ?>
+             <?php
+                        require_once("tpl/$page.php");
+                        
+                        ?>
 
-            </div>
-        </div>
-    </body>
-    <script src="javascript/countdown.js"></script>
-    <script src="javascript/checken.js"></script>
-    <script src="javascript/confirm.js"></script>
+                    </div>
+                </div>
+                </body>
+                <script src="javascript/countdown.js"></script>
+                <script src="javascript/checken.js"></script>
+                <script src="javascript/confirm.js"></script>
 
-    <script>
-        function user_logout() {
-            window.location.href = 'index.php?page=login&event=user_logout';
-        }
-    </script>
+                <script>
+                    function user_logout() {
+                        window.location.href = 'index.php?page=login&event=user_logout';
+                    }
+                </script>
 
-</html>
+                </html>

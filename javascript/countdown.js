@@ -12,7 +12,7 @@ function initializeCountdown(gridItem) {
 
     function repeatCall() {
         distance = distance - 1;
-        console.log(distance);
+       // console.log(distance);
         var day = getDays(distance);
         var resultDiv = gridItem.querySelector("#days");
         resultDiv.innerHTML = day;
@@ -45,6 +45,16 @@ function initializeCountdown(gridItem) {
         var min = seconds / 60;
         return parseInt(min);
     }
+    
     setInterval(repeatCall, 1000);
-}
 
+}
+document.querySelector('.grid-item').addEventListener('mouseover', overing);
+document.querySelector('.grid-item').addEventListener('mouseout', outing);
+function overing(gridItem){
+    console.log(gridItem.querySelector("#description").getAttribute("value"));
+}
+function outing(ev){
+   
+
+}
