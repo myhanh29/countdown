@@ -131,4 +131,111 @@ margin-top: 100px;
 }
 
 
+.calendar {
+    margin-top: 50px;
+    display: flex;
+    flex-flow: column;
+     max-width: 360px; 
+    min-width: 80px;
+    margin-left: 0px; 
+}
 
+.calendar .days {
+    display: flex;
+    flex-flow: wrap;
+   
+}
+.calendar .days .day_name {
+    
+    width: 6px;
+    text-align:  center;
+    border-right: 1.5px solid #6d7478;
+    padding: 20px;
+    text-transform: uppercase;
+    font-size: 8px;
+    font-weight: bold;
+    height: 30px;
+    color: #818589;
+    color: #000000;
+    background-color: #bcc0c2;
+}
+.calendar .days .day_name:nth-child(7) {
+    border: none;
+}
+.calendar .days .day_num {
+    background-color: #f2f2f2;
+    display: flex;
+    flex-flow: column;
+    width: 16px;
+    border-right: 1px solid #e6e9ea;
+    border-bottom: 1px solid #e6e9ea;
+    padding: 15px;
+    font-weight: bold;
+    color: #000000;
+    cursor: pointer;
+    font-size: 10px;
+    height: 30px;
+}
+.calendar .days .day_num span {
+    display: inline-flex;
+    width: 5px;
+    font-size: 9px;
+}
+.calendar .days .day_num .event {
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 14px;
+    padding: 3px 6px;
+    border-radius: 4px;
+    background-color: #f7c30d;
+    color: #fff;
+    display: inline-block;
+    overflow: hidden;
+}
+.calendar .days .day_num .event.green {
+    background-color: #51ce57;
+}
+.calendar .days .day_num .event.blue {
+    background-color: #518fce;
+}
+.calendar .days .day_num .event.red {
+    background-color: #ce5151;
+}
+.calendar .days .day_num:nth-child(7n+1) {
+    border-left: 1px solid #e6e9ea;
+}
+.calendar .days .day_num:hover {
+    background-color: #fdfdfd;
+}
+.calendar .days .day_num.ignore {
+    background-color: #cce6ff;
+    color: #000000;
+    cursor: inherit;
+}
+.calendar .days .day_num.selected {
+    background-color: #ffe6cc;
+    cursor: inherit;
+}
+
+.calendar .header .month-year span.title{
+   font-size: 20px;
+    font-weight: bold;
+    color: #636e73;
+    padding: 20px 30px;
+    text-align:  center;
+
+}
+.calendar .header .month-year
+{
+     text-align:  center;
+}
+ 
+
+.calendar .header .month-year  a.prev{
+    left:0px;
+}
+ 
+.calendar .header .month-year  a.next{
+    right:0px;
+}
+ 
