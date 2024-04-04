@@ -2,60 +2,68 @@
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
 */
- 
+
 
 body{
-  height: 100%;
-  margin: 0;
+    height: 100%;
+    margin: 0;
 }
 
 body{
-  background-image: url('../img/template1.jpeg');
-  height: 100vh;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+    background-image: url('../img/template1.jpeg');
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .container{
-  left: 50%;
-  text-align: center;
-  font-weight: bold;
- 
+    left: 50%;
+    text-align: center;
+    font-weight: bold;
+
 }
 .container1{
-  left: 50%;
-  text-align: center;
-  text-decoration: none ;
- 
+    left: 50%;
+    text-align: center;
+    text-decoration: none ;
+
 }
 h1 {
-  top: 30%;
-  font-size: 60px;
-  text-align: center;
-  color:black;
+    top: 30%;
+    font-size: 60px;
+    text-align: center;
+    color:black;
 }
 h2 {
-  font-family:'Courier New';
-  font-size: 20px;
-  text-align: center;
-  color:black;
+    font-family:'Courier New';
+    font-size: 20px;
+    text-align: center;
+    color:black;
+}
+
+h3{
+    margin-top: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #636e73;
+    margin-left: 850px;
 }
 #day {
-   font-family:'Courier New';
-  font-size: 30px;
-  text-align: center;
-  color:black;
+    font-family:'Courier New';
+    font-size: 30px;
+    text-align: center;
+    color:black;
 }
 
 .name {
-  font-family:'Courier New';
-  font-size: 20px;
-  text-align: center;
-  color:black;
+    font-family:'Courier New';
+    font-size: 20px;
+    text-align: center;
+    color:black;
 }
 
 #content {
-margin-top: 100px;
+    margin-top: 100px;
 
 }
 
@@ -63,90 +71,130 @@ margin-top: 100px;
     margin: 0 auto;
 }*/
 .time{
-    
-  font-size: 20px;
-  color:black;
-  font-family:'Courier New';
-  display: inline-block;
-  position: relative;
-  font-weight: bold;
-  
+
+    font-size: 20px;
+    color:black;
+    font-family:'Courier New';
+    display: inline-block;
+    position: relative;
+    font-weight: bold;
+
 }
 
 .topnav {
-  background-color: transparent;
-  overflow: hidden;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  left: 0%;
-  z-index: 3; /* Set a higher z-index */
-  bottom:auto;
+    background-color: transparent;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    left: 0%;
+    z-index: 3; /* Set a higher z-index */
+    bottom:auto;
 }
 
 
 /* Style the links inside the navigation bar */
 .topnav a {
-  float: right;
-  color: black;
-  text-align: center;
-  padding: 14px 16px;
-  font-weight: bold;
-  text-decoration: none ;
-  font-size: 17px;
+    float: right;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    font-weight: bold;
+    text-decoration: none ;
+    font-size: 17px;
 
 }
 
 /* Change the color of links on hover */
 .topnav a:hover {
-  background-color: #ddd;
-  color: black;
-   text-decoration: none ;
+    background-color: #ddd;
+    color: black;
+    text-decoration: none ;
 }
 
 /* Add a color to the active/current link */
 .topnav a.active {
-  background-color: #c2b6b4;
-  color: white;
-  text-decoration: none ;
+    background-color: #c2b6b4;
+    color: white;
+    text-decoration: none ;
 }
 
 .login{
-  font-size: 60px;
-  color:black;
-  top: 50%;
+    font-size: 60px;
+    color:black;
+    top: 50%;
 }
 
 .grid-container {
-  display: grid;
-  grid-template-columns: auto auto;
-  background-color: transparent;
-  padding: 10px;
+    display: grid;
+    grid-template-columns: auto auto;
+    background-color: transparent;
+    padding: 10px;
 }
 .grid-item {
-  background-color: transparent;
-  padding: 20px;
-  font-size: 30px;
-  text-align: center;
+    background-color: transparent;
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+}
+
+.grid-container1 {
+   position: relative;
+   
+    gap: 10px; 
+    margin-top: 10px;
+    max-width: 100%;
+    min-width: 360px;
+    margin-left: 380px;
+    background-color: #fff;
+     overflow: hidden;
+}
+
+.table{
+    border: 1.5px solid #6d7478;
+    max-width:100%;
+  
+}
+
+.table td {
+    border: 1px solid #ddd; 
+    padding: 8px;
+    text-align: center;
+}
+
+.table td#event{
+    background-color: #ff9933;
+    flex-grow: 1;
+    max-width:100%;
+    padding: 5px;
+    margin: 2px;
 }
 
 
+.table td .event-container {
+   
+    display: flex;
+}
+
 .calendar {
-    margin-top: 50px;
+    position: absolute;
+    left: 0;
+    margin-left: 0;
+   
     display: flex;
     flex-flow: column;
-     max-width: 360px; 
+    max-width: 360px;
     min-width: 80px;
-    margin-left: 0px; 
+  
 }
 
 .calendar .days {
     display: flex;
     flex-flow: wrap;
-   
+
 }
 .calendar .days .day_name {
-    
+
     width: 6px;
     text-align:  center;
     border-right: 1.5px solid #6d7478;
@@ -192,15 +240,8 @@ margin-top: 100px;
     display: inline-block;
     overflow: hidden;
 }
-.calendar .days .day_num .event.green {
-    background-color: #51ce57;
-}
-.calendar .days .day_num .event.blue {
-    background-color: #518fce;
-}
-.calendar .days .day_num .event.red {
-    background-color: #ce5151;
-}
+
+
 .calendar .days .day_num:nth-child(7n+1) {
     border-left: 1px solid #e6e9ea;
 }
@@ -216,9 +257,14 @@ margin-top: 100px;
     background-color: #ffe6cc;
     cursor: inherit;
 }
+.calendar .days .day_num.selected1 {
+
+    cursor: inherit;
+    background-color: #51ce57;
+}
 
 .calendar .header .month-year span.title{
-   font-size: 20px;
+    font-size: 20px;
     font-weight: bold;
     color: #636e73;
     padding: 20px 30px;
@@ -227,15 +273,15 @@ margin-top: 100px;
 }
 .calendar .header .month-year
 {
-     text-align:  center;
+    text-align:  center;
+    padding: 10px;
 }
- 
+
 
 .calendar .header .month-year  a.prev{
     left:0px;
 }
- 
+
 .calendar .header .month-year  a.next{
     right:0px;
 }
- 

@@ -19,6 +19,7 @@ class calendar{
        
  
        echo $setcalendar->__toString();
+       echo $setcalendar->_createdaycalendar() ;
     }
     
 }
