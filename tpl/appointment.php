@@ -23,8 +23,8 @@ if ($_GET['event'] == 'user_appointment') {
     </form>
     <?php
 } else if ($_GET['event'] == 'user_editappointment') {
-    
-        $id = $_GET['id'];
+       $id=$_GET['id'];
+        
         $query = "SELECT * FROM appointment WHERE id='$id'";
         $query_run = mysqli_query($conn, $query);
 

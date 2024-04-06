@@ -30,12 +30,12 @@ class appointment {
     public function user_editappointment() {
 
         if (isset($_SESSION['user']['id'])) {
-
+            $setappointment = new setappointment();
+            $setappointment->checkappointment($_SESSION['user']['id'], $_GET['id']);
             if (isset($_POST['edit_terminname']) || isset($_POST['edit_description']) || isset($_POST['edit_datetime']) || isset($_POST['edit_isactive'])) {
                 $id = $_POST['id'];
                 $userid = $_SESSION['user']['id'];
-                $setappointment = new setappointment();
-                $setappointment->checkappointment($userid, $id);
+
                 $terminname2 = $_POST['edit_terminname'];
                 $description2 = $_POST['edit_description'];
                 $datetime2 = $_POST['edit_datetime'];
@@ -46,11 +46,9 @@ class appointment {
     }
 
     public function user_deleteappointment() {
-        $id = $_GET['id'];
+        
 
         $setappointment = new setappointment();
-        $setappointment->deleteappointment($id);
+        $setappointment->deleteappointment($_GET['id']);
     }
-
-   
 }

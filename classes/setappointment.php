@@ -31,9 +31,23 @@ class setappointment {
         $appointments = array();
 // Select database
         mysqli_select_db($this->conn, "countdown") or die(mysqli_error());
+        
 // SQL query
-        $strSQL = "SELECT appointment.*, user.firstname FROM appointment INNER JOIN user ON appointment.userid=user.id WHERE user.id='$userid'";
+        $admincheck = "SELECT adminrole FROM user WHERE id='$userid'";
+        $admin_query = mysqli_query($this->conn, $admincheck);
 
+        if ($admin_query && mysqli_num_rows($admin_query) > 0) {
+            $adminrow = mysqli_fetch_assoc($admin_query);
+            $adminrole = $adminrow['adminrole'];
+
+            if ($adminrole == 0||$adminrole == Null) {
+        $strSQL = "SELECT appointment.*, user.firstname FROM appointment INNER JOIN user ON appointment.userid=user.id WHERE user.id='$userid'";
+            }
+            else if($adminrole == 1)
+            {
+                  $strSQL = "SELECT appointment.*, user.firstname FROM appointment INNER JOIN user ON appointment.userid=user.id";
+            }
+        }
 // Execute the query (the recordset $rs contains the result)
         $rs = mysqli_query($this->conn, $strSQL);
         while ($row = mysqli_fetch_array($rs)) {
@@ -44,22 +58,27 @@ class setappointment {
 
     //Pruefen der Ersteller des Termines
     public function checkappointment($userid, $id) {
-        $query = "SELECT * FROM appointment WHERE id='$id' AND userid='$userid'";
-        echo $query;
-        $checkU = mysqli_query($this->conn, $query)
-                or die(mysqli_error($this->conn))
-        ;
-        echo mysqli_num_rows($checkU);
-        if (mysqli_num_rows($checkU) == 0) {
-            echo "ne";
-            header("Location: index.php?page=appointmentlist&event=user_appointmentlist");
-            exit;
+        $admincheck = "SELECT adminrole FROM user WHERE id='$userid'";
+        $admin_query = mysqli_query($this->conn, $admincheck);
+
+        if ($admin_query && mysqli_num_rows($admin_query) > 0) {
+            $adminrow = mysqli_fetch_assoc($admin_query);
+            $adminrole = $adminrow['adminrole'];
+
+            if ($adminrole == 0) {
+                $query = "SELECT * FROM appointment WHERE id='$id' AND userid='$userid'";
+
+                $checkU = mysqli_query($this->conn, $query)
+                        or die(mysqli_error($this->conn))
+                ;
+
+                if (mysqli_num_rows($checkU) == 0) {
+
+                    header("Location: index.php?page=appointmentlist&event=user_appointmentlist");
+                    exit;
+                }
+            }
         }
-        /* else
-          {
-          echo "ok";
-          exit;
-          } */
     }
 
     public function editappointment($terminname2, $description2, $datetime2, $isactive2, $id) {
@@ -74,6 +93,7 @@ class setappointment {
     }
 
     public function deleteappointment($id) {
+       
         $sql = "DELETE FROM appointment WHERE id='$id' ";
         if ($this->conn->query($sql) === TRUE) {
             header("Location: index.php?page=appointmentlist&event=user_appointmentlist");
