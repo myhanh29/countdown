@@ -16,9 +16,10 @@ class setappointment {
         $this->conn = $db->connect();
     }
 
-    public function appointment($terminname, $description, $datetime, $isactive, $userid) {
-        $sql = "INSERT INTO appointment (name, description, date, is_active, userid)
-    VALUES ('$terminname','$description','$datetime','$isactive'-'0','$userid')";
+    public function appointment($terminname, $description, $datetime_star, $isactive, $userid,$datetime_end,) {
+        $sql = "INSERT INTO appointment (name, description, date_star, is_active, userid, date_end)
+    VALUES ('$terminname','$description','$datetime_star','$isactive'-'0','$userid','$datetime_end')";
+       
         if ($this->conn->query($sql) === TRUE) {
             header("Location: index.php?page=home&event=user_countdown");
             return 1;
@@ -81,8 +82,8 @@ class setappointment {
         }
     }
 
-    public function editappointment($terminname2, $description2, $datetime2, $isactive2, $id) {
-        $query = "UPDATE appointment SET name='$terminname2', description='$description2', date='$datetime2', is_active=('$isactive2'-'0') WHERE id='$id'";
+    public function editappointment($terminname2, $description2, $datetime_star2,$datetime_end2, $isactive2, $id) {
+        $query = "UPDATE appointment SET name='$terminname2', description='$description2', date_star='$datetime_star2', date_end='$datetime_end2',is_active=('$isactive2'-'0') WHERE id='$id'";
         $query_run = mysqli_query($this->conn, $query);
         if ($query_run) {
             $_SESSION['announcement'] = "Termine aktualisiert";

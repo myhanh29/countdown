@@ -28,9 +28,10 @@ class countdowntimer {
             $adminrole = $adminrow['adminrole'];
 
             if ($adminrole == 0 || $adminrole == Null) {
-                $strSQL = "SELECT id, name, description, date FROM appointment WHERE is_active='1' AND userid='$userid'";
+                $strSQL = "SELECT id, name, description, date_star FROM appointment WHERE is_active='1' AND userid='$userid'";
             } else if ($adminrole == 1) {
-                $strSQL = "SELECT id, name, description, date FROM appointment WHERE is_active='1'";
+                $strSQL = "SELECT id, name, description, date_star FROM appointment WHERE is_active='1'";
+                
             }
 
         }

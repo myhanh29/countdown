@@ -7,7 +7,8 @@ $appointments = $appointmentlist->user_appointmentlist(); ?>
             <td width=100 style='font-weight: bold;'>Id</td> 
             <td width=100 style='font-weight: bold;'>Name</td> 
             <td width=100 style='font-weight: bold;'>Beschreibung</td> 
-            <td width=100 style='font-weight: bold;'>Datum</td> 
+            <td width=100 style='font-weight: bold;'>Datum(star)</td> 
+            <td width=100 style='font-weight: bold;'>Datum(end)</td> 
             <td width=100 style='font-weight: bold;'>Aktiver Status</td> 
             <td width=100 style='font-weight: bold;'>Benutzername</td> 
             <td width=100 style='font-weight: bold;'>Aktion</td> 
@@ -19,7 +20,8 @@ $appointments = $appointmentlist->user_appointmentlist(); ?>
                 <td><?php echo $row['id']; ?></td>
                 <td><?php echo $row['name'];?></td>
                 <td><?php echo $row['description']; ?></td>
-                <td><?php echo date("m/d/Y H:i:s", strtotime($row['date'])); ?></td>
+                <td><?php echo date("m/d/Y H:i:s", strtotime($row['date_star'])); ?></td>
+                 <td><?php echo date("m/d/Y H:i:s", strtotime($row['date_end'])); ?></td>
                 <td><?php echo $row['is_active'] == '1' ? '&checkmark;' : ' '; ?> </td>
                 <td><?php echo $row['firstname']; ?> </td>
                 <td>

@@ -13,8 +13,10 @@ if ($_GET['event'] == 'user_appointment') {
         <input type="text" name="terminname" id="terminname" >
         <div>Beschreibung</div>
         <textarea id="description" name="description" rows="6" cols="50">Bitte geben Sie die Beschreibung für den Termin</textarea>
-        <div>Geben Sie bitte das Datum und die Zeit nacheinander ein: </div>
-        <input type="datetime-local" name="datetime" id="datetime">  <br>
+        <div>Geben Sie bitte den Starttag und die Zeit nacheinander ein: </div>
+        <input type="datetime-local" name="datetime_star" id="datetime_star">  <br>
+        <div>Geben Sie bitte den Endtag und die Zeit nacheinander ein: </div>
+        <input type="datetime-local" name="datetime_end" id="datetime_end">  <br>
         <label>Ist dieser Termin aktiv?</label>
         <input type="hidden" name="isactive" name="isactive" value="0" />
         <input type="checkbox" name="isactive" name="isactive" value="1" />
@@ -38,8 +40,11 @@ if ($_GET['event'] == 'user_appointment') {
                     <input type="text" name="edit_terminname" value="<?php echo $row['name'] ?>" class="form-control">
                     <div>Beschreibung</div>
                     <textarea id="description" name="edit_description" rows="6" cols="50" class="form-control"><?php echo $row['description']; ?></textarea>
-                    <div>Geben Sie bitte das Datum und die Zeit nacheinander ein: </div>
-                    <input type="datetime-local" name="edit_datetime" value="<?php echo date('Y-m-d\TH:i', strtotime($row['date'])); ?>" class="form-control">
+                    <div>Geben Sie bitte den Startage Zeit nacheinander ein: </div>
+                    <input type="datetime-local" name="edit_datetime_star" value="<?php echo date('Y-m-d\TH:i', strtotime($row['date_star'])); ?>" class="form-control">
+                    <div>Geben Sie bitte den Endtag und die Zeit nacheinander ein: </div>
+                    <input type="datetime-local" name="edit_datetime_end" value="<?php echo date('Y-m-d\TH:i', strtotime($row['date_end'])); ?>" class="form-control">
+                    
                     <br>
                     <label>Ist dieser Termin aktiv?</label>
                     <input type="hidden" name="edit_isactive" value="0" />

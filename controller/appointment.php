@@ -12,18 +12,19 @@ class appointment {
 
     public function user_appointment() {
 
-        if (isset($_POST['terminname']) && isset($_POST['description']) && isset($_POST['datetime']) && isset($_POST['isactive'])) {
+        if (isset($_POST['terminname']) && isset($_POST['description']) && isset($_POST['datetime_star'])&& isset($_POST['datetime_end']) && isset($_POST['isactive'])) {
             $email = $_SESSION['user']['email'];
             $userid = $_SESSION['user']['id'];
 
             $terminname = $_REQUEST['terminname'];
             $description = $_REQUEST['description'];
-            $datetime = $_REQUEST['datetime'];
+            $datetime_star = $_REQUEST['datetime_star'];
+            $datetime_end = $_REQUEST['datetime_end'];
             $isactive = $_POST['isactive'];
 
             $setappointment = new setappointment();
 
-            $setappointment->appointment($terminname, $description, $datetime, $isactive, $userid);
+            $setappointment->appointment($terminname, $description, $datetime_star, $isactive, $userid,$datetime_end);
         }
     }
 
@@ -32,15 +33,16 @@ class appointment {
         if (isset($_SESSION['user']['id'])) {
             $setappointment = new setappointment();
             $setappointment->checkappointment($_SESSION['user']['id'], $_GET['id']);
-            if (isset($_POST['edit_terminname']) || isset($_POST['edit_description']) || isset($_POST['edit_datetime']) || isset($_POST['edit_isactive'])) {
+            if (isset($_POST['edit_terminname']) || isset($_POST['edit_description']) || isset($_POST['edit_datetime_star'])|| isset($_POST['edit_datetime_end']) || isset($_POST['edit_isactive'])) {
                 $id = $_POST['id'];
                 $userid = $_SESSION['user']['id'];
 
                 $terminname2 = $_POST['edit_terminname'];
                 $description2 = $_POST['edit_description'];
-                $datetime2 = $_POST['edit_datetime'];
+                $datetime_star2 = $_POST['edit_datetime_star'];
+                $datetime_end2 = $_POST['edit_datetime_end'];
                 $isactive2 = $_POST['edit_isactive'];
-                $setappointment->editappointment($terminname2, $description2, $datetime2, $isactive2, $id);
+                $setappointment->editappointment($terminname2, $description2, $datetime_star2,$datetime_end2, $isactive2, $id);
             }
         }
     }

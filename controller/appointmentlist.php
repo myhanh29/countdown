@@ -19,7 +19,7 @@ class appointmentlist {
         $today = date("Y-m-d H:i:s");
 
         foreach ($appointments as $row) {
-            $appointmentdate = date("Y-m-d H:i:s", strtotime($row['date']));
+            $appointmentdate = date("Y-m-d H:i:s", strtotime($row['date_end']));
 
             if ($appointmentdate < $today) {
 

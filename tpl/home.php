@@ -12,9 +12,9 @@ if (isset($_GET['event']) && $_GET['event'] == 'user_countdown') {
             <a href='index.php?page=appointment&event=user_editappointment&id=<?php echo $row['id']; ?>' style='text-decoration: none'>
             <div class="grid-item" title="<?php echo $row['description'] ?>">
               
-                <div type="hidden" id="datetime" value="<?php echo $row['date']; ?>"></div>
+                <div type="hidden" id="datetime_star" value="<?php echo $row['date_star']; ?>"></div>
 
-                <div id="day"><?php echo date("m/d/Y", strtotime($row['date'])); ?></div>
+                <div id="day"><?php echo date("m/d/Y", strtotime($row['date_star'])); ?></div>
                 <div class="name"><?php echo $row['name']; ?></div>
                 <div id="days" class="time" >00</div>
                 <div class="time">&nbsp;Days&nbsp;</div>

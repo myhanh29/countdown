@@ -7,6 +7,7 @@ class setcalendar {
 
 //Tag, Monat und Jahr für Kanlander setzen
     public function __construct($date = null) {
+
         $this->naviHref = htmlentities($_SERVER['PHP_SELF'] . "?page=calendar&event=user_calendar");
         //if(!isset($_GET['active_month'])&&!isset($_GET['active_year']))
         //{
@@ -20,18 +21,16 @@ class setcalendar {
                 $this->active_year = $_GET['active_year'];
                 $this->active_month = $_GET['active_month'];
                 $this->active_day = '1';
-            }
-            else if(isset($_GET['active_day']))
-            {
-                $this->active_day =$_GET['active_day'];
+            } else if (isset($_GET['active_day'])) {
+                $this->active_day = $_GET['active_day'];
             }
         }
     }
 
 //Termine von Database ergänzen
-    public function add_event($name, $date, $days = 1, $color = '') {
+    public function add_event($name, $date_star, $date_end, $days = 1, $color = '') {
         $color = $color ? ' ' . $color : $color;
-        $this->events[] = [$name, $date, $days, $color];
+        $this->events[] = [$name, $date_star, $date_end, $days, $color];
     }
 
     public function __toString() {
@@ -64,21 +63,19 @@ class setcalendar {
         }
         $date = null;
         for ($i = 1; $i <= $num_days; $i++) {
-        
-            $selected = '';
-            
 
-            if ($i == $this->active_day|| $this->active_month== ($date != null ? date('m', strtotime($date)) : date('m')) && $i== ($date != null ? date('d', strtotime($date)) : date('d'))) {
+            $selected = '';
+
+            if ($i == $this->active_day || $this->active_month == ($date != null ? date('m', strtotime($date)) : date('m')) && $i == ($date != null ? date('d', strtotime($date)) : date('d'))) {
                 $selected = ' selected';
             }
 
             $html .= '<div class="day_num' . $selected . '">';
-            $html .= '<a href="' . $this->naviHref . '&active_month=' . $this->active_month . '&active_year=' . $this->active_year .'&active_day=' . $i . '">' . $i . '</a>';
+            $html .= '<a href="' . $this->naviHref . '&active_month=' . $this->active_month . '&active_year=' . $this->active_year . '&active_day=' . $i . '">' . $i . '</a>';
             foreach ($this->events as $event) {
-
-                for ($d = 0; $d <= ($event[2] - 1); $d++) {
+                for ($d = 0; $d <= ($event[3] - 1); $d++) {
                     if (date('y-m-d', strtotime($this->active_year . '-' . $this->active_month . '-' . $i . ' -' . $d . ' day')) == date('y-m-d', strtotime($event[1]))) {
-                        $html .= '<div class="event' . $event[3] . '">';
+                        $html .= '<div class="event' . $event[4] . '">';
 
                         $html .= '</div>';
                     }
@@ -119,46 +116,73 @@ class setcalendar {
     }
 
 // Kalander für jeden Tag mit Termine in Studen
-  public function _createdaycalendar() {
-    $html = "<h3>Termine in dem Tag </h3>";
-    $html .= '<div class="grid-container1">';
-    $html .= '<table class="table">';
-      
-   for ($hour = 1; $hour <= 24; $hour++) {
-     
-        $formattedHour = sprintf("%02d:00", $hour);
-        
-        $html .= '<td id="hour" class="hour_' . $hour . '">';
-        $html .= $formattedHour;
-        $html .= '</td>';
-        $numEvents = 0;
-        foreach ($this->events as $event) {
-           
-          
-             if (date('Y-m-d H', strtotime($event[1])) == date('Y-m-d H',  mktime($hour, 0, 0, $this->active_month, $this->active_day, $this->active_year))) {
-               $numEvents++;
-                
+    public function _createdaycalendar() {
+        $html = "<h3>Termine in dem Tag </h3>";
+        $html .= '<div class="grid-container1">';
+        $html .= '<table class="table">';
+
+        for ($hour = 1; $hour <= 24; $hour++) {
+            $html .= '<tr>';
+            $formattedHour = sprintf("%02d:00", $hour);
+
+            $html .= '<td id="hour"  class="hour_' . $hour . '">';
+            $html .= $formattedHour;
+            $html .= '</td>';
+
+            $numEvents = 0;
+            foreach ($this->events as $key => $event) {
+                if (date('Y-m-d H', strtotime($event[1])) <= date('Y-m-d H', mktime($hour, 0, 0, $this->active_month, $this->active_day, $this->active_year)) && date('Y-m-d H', strtotime($event[2])) >= date('Y-m-d H', mktime($hour, 0, 0, $this->active_month, $this->active_day, $this->active_year))) {
+                    $numEvents++;
+                }
             }
+
+
+
+            foreach ($this->events as $key => $event) {
+
+                if (date('Y-m-d H', strtotime($event[1])) <= date('Y-m-d H', mktime($hour, 0, 0, $this->active_month, $this->active_day, $this->active_year)) && date('Y-m-d H', strtotime($event[2])) >= date('Y-m-d H', mktime($hour, 0, 0, $this->active_month, $this->active_day, $this->active_year))) {
+                    $columnWidth = $numEvents > 0 ? (100 / $numEvents) . '%' : '100%';
+                    $startTime = strtotime($event[1]);
+                    $endTime = strtotime($event[2]);
+                    $timediff = ($endTime - $startTime) / 3600;
+
+                    if (date('Y-m-d', strtotime($event[1])) != date('Y-m-d', strtotime($event[2]))) {
+                        if (date('Y-m-d H', mktime($hour, 0, 0, $this->active_month, $this->active_day, $this->active_year)) == date('Y-m-d H', strtotime($event[1]))) {
+
+                            $html .= '<td style="width: ' . $columnWidth . ';" rowspan="' . ((24 - $hour + 1)) . '" class="event-container" id="event">';
+                            $html .= '<div id="event" style="color: #000000;">' . $event[0] . '</div>';
+                            $html .= '</td>';
+                            break;
+                        } else if (date('Y-m-d', mktime($hour, 0, 0, $this->active_month, $this->active_day, $this->active_year)) == date('Y-m-d', strtotime($event[2]))) {
+                            $printedtime = 24 - date('H', strtotime($event[1]));
+                            $remainrow = $timediff - floor(((($timediff - $printedtime)) / 24)) * 24 - $printedtime;
+
+                            $html .= '<td style="width: ' . $columnWidth . ';" rowspan="' . ($remainrow) . '" class="event-container" id="event">';
+                            $html .= '<div id="event" style="color: #000000;">' . $event[0] . '</div>';
+                            $html .= '</td>';
+                            unset($this->events[$key]);
+                            break;
+                        } else if (date('Y-m-d', mktime($hour, 0, 0, $this->active_month, $this->active_day, $this->active_year)) < date('Y-m-d', strtotime($event[2])) && date('Y-m-d', mktime($hour, 0, 0, $this->active_month, $this->active_day, $this->active_year)) > date('Y-m-d', strtotime($event[1]))&& $hour==1) {
+                            $html .= '<td style="width: ' . $columnWidth . ';" rowspan="' . 24 . '" class="event-container" id="event">';
+                            $html .= '<div id="event" style=" color: #000000;">' . $event[0] . '</div>';
+                            $html .= '</td>';
+                            break;
+                        }
+                    } else {
+                        $html .= '<td style="width: ' . $columnWidth . ';" rowspan="' . ($timediff + 1) . '" class="event-container" id="event">';
+                        $html .= '<div id="event" style=" color: #000000;">' . $event[0] . '</div>';
+                        $html .= '</td>';
+                        unset($this->events[$key]);
+                        break;
+                    }
+                }
+            }
+            $html .= '</tr>';
         }
-    
 
-        // Print each event in a column with width based on the number of events
-        foreach ($this->events as $event) {
-              if (date('Y-m-d H', strtotime($event[1])) == date('Y-m-d H',  mktime($hour, 0, 0, $this->active_month, $this->active_day, $this->active_year))) {
-                 $columnWidth = $numEvents > 0 ? (100 / $numEvents) . '%' : '100%';
-                $html .= '<td style="width: ' . $columnWidth . ';" class="event-container" id="event">';
-                $html .= '<div id="event" style=" color: #000000;">' . $event[0] . '</div>';
-                $html .= '</td>';
-            }
-        
-     }   
-        $html .= '</tr>';
+        $html .= '</table>';
+        $html .= '</div>';
+
+        return $html;
     }
-    
-    $html .= '</table>';
-    $html .= '</div>';
-    
-    return $html;
 }
-}
-

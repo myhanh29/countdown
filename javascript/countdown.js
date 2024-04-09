@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Other/javascript.js to edit this template
  */
 function initializeCountdown(gridItem) {
-    var endDateString = gridItem.querySelector("#datetime").getAttribute("value");
+    var endDateString = gridItem.querySelector("#datetime_star").getAttribute("value");
     var endDate = new Date(endDateString);
     var startDate = new Date();
     var distance = endDate.getTime() - startDate.getTime();
