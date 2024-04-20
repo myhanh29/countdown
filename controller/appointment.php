@@ -20,11 +20,12 @@ class appointment {
             $description = $_REQUEST['description'];
             $datetime_star = $_REQUEST['datetime_star'];
             $datetime_end = $_REQUEST['datetime_end'];
+            $priority = $_REQUEST['priority'];
             $isactive = $_POST['isactive'];
 
             $setappointment = new setappointment();
 
-            $setappointment->appointment($terminname, $description, $datetime_star, $isactive, $userid,$datetime_end);
+            $setappointment->appointment($terminname, $description, $datetime_star, $isactive, $userid,$datetime_end,$priority);
         }
     }
 
@@ -41,8 +42,9 @@ class appointment {
                 $description2 = $_POST['edit_description'];
                 $datetime_star2 = $_POST['edit_datetime_star'];
                 $datetime_end2 = $_POST['edit_datetime_end'];
+                $priority2 = $_REQUEST['edit_priority'];
                 $isactive2 = $_POST['edit_isactive'];
-                $setappointment->editappointment($terminname2, $description2, $datetime_star2,$datetime_end2, $isactive2, $id);
+                $setappointment->editappointment($terminname2, $description2, $datetime_star2,$datetime_end2, $isactive2, $id, $priority2);
             }
         }
     }

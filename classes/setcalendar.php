@@ -28,9 +28,9 @@ class setcalendar {
     }
 
 //Termine von Database ergänzen
-    public function add_event($name, $date_star, $date_end, $days = 1, $color = '') {
+    public function add_event($name, $date_star, $date_end, $days = 1, $color = '',$priority) {
         $color = $color ? ' ' . $color : $color;
-        $this->events[] = [$name, $date_star, $date_end, $days, $color];
+        $this->events[] = [$name, $date_star, $date_end, $days, $color,$priority];
     }
 
     public function export_events_to_json() {

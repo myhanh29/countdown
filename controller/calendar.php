@@ -15,7 +15,7 @@ class calendar {
         $appointments = $setappointment->appointmentlist($userid);
         $setcalendar = new setcalendar();
         foreach ($appointments as $row) {
-            $setcalendar->add_event($row['name'], date("Y-m-d H:i:s", strtotime($row['date_star'])), date("Y-m-d H:i:s", strtotime($row['date_end'])), $days = 1, $color = '');
+            $setcalendar->add_event($row['name'], date("Y-m-d H:i:s", strtotime($row['date_star'])), date("Y-m-d H:i:s", strtotime($row['date_end'])), $days = 1, $color = '', $row['priority']);
         }
 
         
