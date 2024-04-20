@@ -1,9 +1,3 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
-*/
-
-
 body{
     height: 100%;
     margin: 0;
@@ -41,13 +35,6 @@ h2 {
     color:black;
 }
 
-h3{
-    margin-top: 50px;
-    font-size: 20px;
-    font-weight: bold;
-    color: #636e73;
-    margin-left: 850px;
-}
 #day {
     font-family:'Courier New';
     font-size: 30px;
@@ -129,8 +116,10 @@ h3{
     display: grid;
     grid-template-columns: auto auto;
     background-color: transparent;
+    grid-gap: 10px;
     padding: 10px;
 }
+
 .grid-item {
     background-color: transparent;
     padding: 20px;
@@ -139,61 +128,189 @@ h3{
 }
 
 .grid-container1 {
-   position: relative;
-   
-    gap: 10px; 
-    margin-top: 10px;
-    max-width: 100%;
-    min-width: 360px;
-    margin-left: 380px;
-    background-color: #fff;
-     overflow: hidden;
+    display: grid;
+    grid-template-columns: 2fr 7fr;
+    grid-template-rows: auto;
+    grid-gap: 8px;
+    gap: 1px 1px;
+    margin-top:50px;
+    grid-template-areas:
+    ". grid-item2"
+    ". grid-item1";
 }
+.grid-container1 > div, > li, > ul{
 
-.table{
-    border: 1.5px solid #6d7478;
-    max-width:100%;
-  
-}
-
-.table td {
-    border: 1px solid #ddd; 
-    padding: 8px;
     text-align: center;
 }
 
-.table td#event{
-    background-color: #ff9933;
-    flex-grow: 1;
-    max-width:100%;
-    padding: 5px;
-    margin: 2px;
+.grid-item1 .days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.grid-item1 .header {
+  background: transparent;
+  color: whitesmoke;
+}
+
+.grid-item1 .days {
+  background: rgb(194, 194, 194);
+  min-height: 2em;
+}
+
+.grid-item1 .days li {
+  border-right: 1px solid black;
 }
 
 
-.table td .event-container {
-   
-    display: flex;
-}
-
-.calendar {
-    position: absolute;
-    left: 0;
-    margin-left: 0;
-   
+.grid-item1{
+  background: rgb(189, 156);
+    grid-area: grid-item1;
+    position: fixed; 
+    left: 0; 
+    top: 50px; 
     display: flex;
     flex-flow: column;
     max-width: 360px;
-    min-width: 80px;
+}
+li {
+    list-style: none;
+}
+
+ul {
+    margin: 0px;
+    padding: 0px;
+}
+.grid-item2{
+    display: grid;
+    grid-template-columns: 50px auto;
+    gap: 1px 1px;
+    grid-area: grid-item2;
+    background-color: #fff;
+    grid-template-areas:
+        ". header1"
+        "timeslots-container event-container";
+     max-width: 100%; 
+    margin: auto 0; 
+    max-height: 90vh; 
+    overflow: auto;
+}
+.grid-item2 .header1{
+    grid-row: 1;
+    grid-area: header1; 
+     align-self: center; 
+    justify-self: center; 
+}
+.grid-item2 h3{
+    font-size: 20px;
+    font-weight: bold;
+    color: #636e73;
+    text-align: center;
+    grid-area: header1;
+    
+     margin: 0;
+}
+
+.timeslots-container,
+.event-container {
+  grid-row: 2; 
+}
+.grid-item2 .timeslots-container {
+    background: lightblue;
+    grid-area: timeslots-container;
+    justify-items: left;
   
+    
 }
 
-.calendar .days {
+.grid-item2 .timeslots {
     display: flex;
-    flex-flow: wrap;
+    flex-direction: column;
+    align-items: center;
+
 
 }
-.calendar .days .day_name {
+
+.grid-item2 .timeslots li {
+    min-height: 100px;
+}
+
+.grid-item2 .timeslots li::after {
+    content: "";
+    position: absolute;
+     overflow: hidden;
+    width: auto;
+    height: 1px;
+    background: #afafaf;
+    z-index: 1;
+    
+}
+
+.grid-item2 .event-container {
+  display: grid;
+  grid-template-rows: repeat(96, 25px);
+  grid-template-columns: repeat(auto-fill, minmax(min-content, 1fr));
+  position: relative;
+  /*white-space: nowrap;
+  overflow: hidden;*/
+}
+
+.grid-item2 #phpEventContainer.event-container#event {
+  grid-area: event-container; 
+  overflow: hidden;
+  color: #fff;
+  display: absolute;
+  grid-area: main;
+  align-items: center;
+  font-size: 12px;
+  letter-spacing: 0.1px;
+  line-height: 15px;
+}
+
+.grid-item2 .slot {
+  position: absolute;
+  /* overflow: hidden; */
+  background: rgb(66, 147, 223);
+  border-radius: 5px;
+  z-index: 2;
+  margin-top: 1px;
+  border-color: rgb(3, 155, 229);
+  outline: none;
+}
+
+.grid-item2 .slot::before {
+  -webkit-box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14),
+    0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12),
+    0 3px 5px -1px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transition: opacity 100ms linear;
+}
+
+.grid-item2 .slot::after {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: -webkit-calc(100% + 2px);
+  width: calc(100% + 2px);
+  height: -webkit-calc(100% + 2px);
+  height: calc(100% + 2px);
+  content: "";
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  pointer-events: none;
+  border: 1px solid #fff;
+}
+
+.grid-item2 .event-status {
+  float: left;
+  border-left: 3px solid rgb(71, 235, 93);
+  height: 100%;
+}
+
+.grid-item1 .days .day_name {
 
     width: 6px;
     text-align:  center;
@@ -207,10 +324,10 @@ h3{
     color: #000000;
     background-color: #bcc0c2;
 }
-.calendar .days .day_name:nth-child(7) {
+.grid-item1 .days .day_name:nth-child(7) {
     border: none;
 }
-.calendar .days .day_num {
+.grid-item1 .days .day_num {
     background-color: #f2f2f2;
     display: flex;
     flex-flow: column;
@@ -224,12 +341,12 @@ h3{
     font-size: 10px;
     height: 30px;
 }
-.calendar .days .day_num span {
+.grid-item1 .days .day_num span {
     display: inline-flex;
     width: 5px;
     font-size: 9px;
 }
-.calendar .days .day_num .event {
+.grid-item1 .days .day_num .event {
     margin-top: 10px;
     font-weight: 500;
     font-size: 14px;
@@ -242,28 +359,28 @@ h3{
 }
 
 
-.calendar .days .day_num:nth-child(7n+1) {
+.grid-item1 .days .day_num:nth-child(7n+1) {
     border-left: 1px solid #e6e9ea;
 }
-.calendar .days .day_num:hover {
+.grid-item1 .days .day_num:hover {
     background-color: #fdfdfd;
 }
-.calendar .days .day_num.ignore {
+.grid-item1 .days .day_num.ignore {
     background-color: #cce6ff;
     color: #000000;
     cursor: inherit;
 }
-.calendar .days .day_num.selected {
+.grid-item1 .days .day_num.selected {
     background-color: #ffe6cc;
     cursor: inherit;
 }
-.calendar .days .day_num.selected1 {
+.grid-item1 .days .day_num.selected1 {
 
     cursor: inherit;
     background-color: #51ce57;
 }
 
-.calendar .header .month-year span.title{
+.grid-item1 .header .month-year span.title{
     font-size: 20px;
     font-weight: bold;
     color: #636e73;
@@ -271,17 +388,17 @@ h3{
     text-align:  center;
 
 }
-.calendar .header .month-year
+.grid-item1 .header .month-year
 {
     text-align:  center;
     padding: 10px;
 }
 
 
-.calendar .header .month-year  a.prev{
+.grid-item1 .header .month-year  a.prev{
     left:0px;
 }
 
-.calendar .header .month-year  a.next{
+.grid-item1 .header .month-year  a.next{
     right:0px;
 }

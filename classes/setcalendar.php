@@ -33,32 +33,38 @@ class setcalendar {
         $this->events[] = [$name, $date_star, $date_end, $days, $color];
     }
 
+    public function export_events_to_json() {
+
+        $json_data = json_encode($this->events);
+        return $json_data;
+    }
+
     public function __toString() {
         $num_days = date('t', strtotime($this->active_day . '-' . $this->active_month . '-' . $this->active_year));
         $num_days_last_month = date('j', strtotime('last day of previous month', strtotime($this->active_day . '-' . $this->active_month . '-' . $this->active_year)));
         $days = [0 => 'Sun', 1 => 'Mon', 2 => 'Tue', 3 => 'Wed', 4 => 'Thu', 5 => 'Fri', 6 => 'Sat'];
         $first_day_of_week = array_search(date('D', strtotime($this->active_year . '-' . $this->active_month . '-1')), $days);
-        $html = '<div class="calendar">';
+        $html = '';
+        $html .= '<div class="grid-container1">';
+        $html .= '<div class="grid-item1">';
         $html .= '<div class="header">';
         $html .= '<div class="month-year">';
         $html .= $this->_createNavi();
         $html .= '</div>';
         $html .= '</div>';
 
-        $html .= '<div class="days">';
+        $html .= '<ul class="days">'; // Đổi thành danh sách (ul)
         foreach ($days as $day) {
-            $html .= '
-                <div class="day_name">
-                    ' . $day . '
-                </div>
-            ';
+            $html .= '<li class="day_name">' . $day . '</li>'; // Sử dụng thẻ li cho từng tên thứ
         }
-        $html .= '<br>';
+        $html .= '</ul>';
+        $html .= '<ul class="days">';
+
         for ($i = $first_day_of_week; $i > 0; $i--) {
             $html .= '
-                <div class="day_num ignore">
+                <li class="day_num ignore">
                     ' . ($num_days_last_month - $i + 1) . '
-                </div>
+                </li>
             ';
         }
         $date = null;
@@ -70,7 +76,7 @@ class setcalendar {
                 $selected = ' selected';
             }
 
-            $html .= '<div class="day_num' . $selected . '">';
+            $html .= '<li class="day_num' . $selected . '">';
             $html .= '<a href="' . $this->naviHref . '&active_month=' . $this->active_month . '&active_year=' . $this->active_year . '&active_day=' . $i . '">' . $i . '</a>';
             foreach ($this->events as $event) {
                 for ($d = 0; $d <= ($event[3] - 1); $d++) {
@@ -83,17 +89,21 @@ class setcalendar {
             }
 
 
-            $html .= '</div>';
+            $html .= '</li>';
         }
         for ($i = 1; $i <= (42 - $num_days - max($first_day_of_week, 0)); $i++) {
             $html .= '
-                <div class="day_num ignore">
+                <li class="day_num ignore">
                     ' . $i . '
-                </div>
+                </li>
             ';
         }
+
+        $html .= '</ul>';
         $html .= '</div>';
+        $html .= $this->_createdaycalendar();
         $html .= '</div>';
+
         return $html;
     }
 
@@ -117,70 +127,49 @@ class setcalendar {
 
 // Kalander für jeden Tag mit Termine in Studen
     public function _createdaycalendar() {
-        $html = "<h3>Termine in dem Tag </h3>";
-        $html .= '<div class="grid-container1">';
-        $html .= '<table class="table">';
+        $html = '';
 
-        for ($hour = 1; $hour <= 24; $hour++) {
-            $html .= '<tr>';
+        $html .= '<div class="grid-item2">';
+        $html .= '<div class="header1">';
+        $html .= '<h3>Termine in dem Tag </h3>';
+        $html .= '</div>';
+        $html .= '<div class="timeslots-container">';
+        $html .= '<ul class="timeslots">';
+        for ($hour = 0; $hour < 24; $hour++) {
+            $html .= '<li>';
             $formattedHour = sprintf("%02d:00", $hour);
-
-            $html .= '<td id="hour"  class="hour_' . $hour . '">';
             $html .= $formattedHour;
-            $html .= '</td>';
-
-            $numEvents = 0;
-            foreach ($this->events as $key => $event) {
-                if (date('Y-m-d H', strtotime($event[1])) <= date('Y-m-d H', mktime($hour, 0, 0, $this->active_month, $this->active_day, $this->active_year)) && date('Y-m-d H', strtotime($event[2])) >= date('Y-m-d H', mktime($hour, 0, 0, $this->active_month, $this->active_day, $this->active_year))) {
-                    $numEvents++;
-                }
-            }
-
-
-
-            foreach ($this->events as $key => $event) {
-
-                if (date('Y-m-d H', strtotime($event[1])) <= date('Y-m-d H', mktime($hour, 0, 0, $this->active_month, $this->active_day, $this->active_year)) && date('Y-m-d H', strtotime($event[2])) >= date('Y-m-d H', mktime($hour, 0, 0, $this->active_month, $this->active_day, $this->active_year))) {
-                    $columnWidth = $numEvents > 0 ? (100 / $numEvents) . '%' : '100%';
-                    $startTime = strtotime($event[1]);
-                    $endTime = strtotime($event[2]);
-                    $timediff = ($endTime - $startTime) / 3600;
-
-                    if (date('Y-m-d', strtotime($event[1])) != date('Y-m-d', strtotime($event[2]))) {
-                        if (date('Y-m-d H', mktime($hour, 0, 0, $this->active_month, $this->active_day, $this->active_year)) == date('Y-m-d H', strtotime($event[1]))) {
-
-                            $html .= '<td style="width: ' . $columnWidth . ';" rowspan="' . ((24 - $hour + 1)) . '" class="event-container" id="event">';
-                            $html .= '<div id="event" style="color: #000000;">' . $event[0] . '</div>';
-                            $html .= '</td>';
-                            break;
-                        } else if (date('Y-m-d', mktime($hour, 0, 0, $this->active_month, $this->active_day, $this->active_year)) == date('Y-m-d', strtotime($event[2]))) {
-                            $printedtime = 24 - date('H', strtotime($event[1]));
-                            $remainrow = $timediff - floor(((($timediff - $printedtime)) / 24)) * 24 - $printedtime;
-
-                            $html .= '<td style="width: ' . $columnWidth . ';" rowspan="' . ($remainrow) . '" class="event-container" id="event">';
-                            $html .= '<div id="event" style="color: #000000;">' . $event[0] . '</div>';
-                            $html .= '</td>';
-                            unset($this->events[$key]);
-                            break;
-                        } else if (date('Y-m-d', mktime($hour, 0, 0, $this->active_month, $this->active_day, $this->active_year)) < date('Y-m-d', strtotime($event[2])) && date('Y-m-d', mktime($hour, 0, 0, $this->active_month, $this->active_day, $this->active_year)) > date('Y-m-d', strtotime($event[1]))&& $hour==1) {
-                            $html .= '<td style="width: ' . $columnWidth . ';" rowspan="' . 24 . '" class="event-container" id="event">';
-                            $html .= '<div id="event" style=" color: #000000;">' . $event[0] . '</div>';
-                            $html .= '</td>';
-                            break;
-                        }
-                    } else {
-                        $html .= '<td style="width: ' . $columnWidth . ';" rowspan="' . ($timediff + 1) . '" class="event-container" id="event">';
-                        $html .= '<div id="event" style=" color: #000000;">' . $event[0] . '</div>';
-                        $html .= '</td>';
-                        unset($this->events[$key]);
-                        break;
-                    }
-                }
-            }
-            $html .= '</tr>';
+            $html .= '</li>';
         }
+        $html .= '</ul>';
+        $html .= '</div>';
 
-        $html .= '</table>';
+        // Initialize an array to store filtered events
+        $filteredEvents = [];
+
+        // Loop through each hour and each event to filter events
+
+        foreach ($this->events as $key => $event) {
+            if (date('Y-m-d', strtotime($event[1])) <= date('Y-m-d', mktime(0, 0, 0,$this->active_month, $this->active_day, $this->active_year)) && date('Y-m-d', strtotime($event[2])) >= date('Y-m-d', mktime(0, 0, 0,$this->active_month, $this->active_day, $this->active_year))) {
+
+                $filteredEvents[] = $event;
+            }
+            $filteredEventsJson = json_encode($filteredEvents);
+ 
+            // Embed the JSON data into JavaScript variable eventsData
+            $html .= '<script>';
+            $html .= 'var eventsData = ' . $filteredEventsJson . ';';
+            $html .= '</script>';
+            $html .= '<script>';
+            $html .= 'var activeDay = "' . date('Y-m-d', mktime(0, 0, 0, $this->active_month, $this->active_day, $this->active_year)) . '";';
+            $html .= '</script>';
+        }
+       
+        // Convert the filtered events array to JSON
+        // Output the event container div
+        $html .= '<div id="phpEventContainer" class="event-container">';
+        $html .= '</div>';
+
         $html .= '</div>';
 
         return $html;
