@@ -28,7 +28,7 @@ class resetRequest extends controller {
             $mailSender->addRecipient($emailTo);
             $mailSender->addReplyTo('no-reply@wystem.de', 'No reply');
             $mailSender->setHTMLFormat(true);
-            $mailSender->setSubject('Ihr Link zum Zurücksetzen des Passworts');
+            $mailSender->setSubject('Ihr Link zum Zuruecksetzen des Passworts');
             $mailSender->setBody("<h1>Sie haben ein neues Passwort angefordert </h1>"
                     . "Klicken Sie auf <a href='$url'> this link</a>, um dies zu tun");
             $mailSender->setAltBody('Dies ist der Textkörper im Klartext für Nicht-HTML-Mail-Clients');

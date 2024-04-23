@@ -10,3 +10,11 @@ function myFunction() {
   }
 }
 
+function myFunction1() {
+  if (confirm("Möchten Sie diesen Nutzer löschen?") == true) {
+    
+  } else {
+     event.preventDefault();  
+  }
+}
+

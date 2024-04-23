@@ -9,6 +9,8 @@ for (var i = 0; i < eventsData.length; i++) {
 
     var endtimestring = eventsData[i][2];
     var dateendPart = endtimestring.split(" ")[0];
+ console.log(datestartPart);
+ console.log(dateendPart);
 
     if (datestartPart === dateendPart) {
         const evt = {
@@ -25,6 +27,7 @@ for (var i = 0; i < eventsData.length; i++) {
     } else if (datestartPart !== dateendPart)
     {
         if (activeDay === datestartPart) {
+           
             let evt = {
                 starttime: eventsData[i][1],
                 endtime: new Date(datestartPart + 'T23:59:59'),
@@ -33,6 +36,8 @@ for (var i = 0; i < eventsData.length; i++) {
                 name: eventsData[i][0],
                 priority: eventsData[i][5]
             };
+ console.log(evt);
+            debugger
 
             updatedEventsData.push(evt);
         }
@@ -153,7 +158,7 @@ function getColor(priority) {
     if (priority === 'Important')
     {
         color = 'red';
-    } else if (priority === 'Notimportant')
+    } else if (priority === 'unimportant')
     {
         color = 'green';
     } else {

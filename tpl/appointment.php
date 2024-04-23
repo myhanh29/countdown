@@ -21,7 +21,7 @@ if ($_GET['event'] == 'user_appointment') {
         <select id="priority" name="priority">
             <option value="normal">Normal</option>
             <option value="Important">Wichtig</option>
-            <option value=" Notimportant">Nicht wichtig</option>
+            <option value="unimportant">Unwichtig</option>
         </select> <br>
         <label>Ist dieser Termin aktiv?</label>
         <input type="hidden" name="isactive" name="isactive" value="0" />
@@ -61,7 +61,7 @@ if ($_GET['event'] == 'user_appointment') {
                     $priorities = array(
                         'normal' => 'Normal',
                         'Important' => 'Wichtig',
-                        'Notimportant' => 'Nicht wichtig'
+                        'unimportant' => 'Unwichtig'
                     );
 
                     
@@ -71,7 +71,7 @@ if ($_GET['event'] == 'user_appointment') {
                     }
                     ?>
                 </select> <br>
-                <label>Ist dieser Termin aktiv?</label>
+               
                 <label>Ist dieser Termin aktiv?</label>
                 <input type="hidden" name="edit_isactive" value="0" />
                 <input type="checkbox" name="edit_isactive" value="1" <?php if ($row['is_active'] == '1') echo 'checked'; ?>/>

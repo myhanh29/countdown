@@ -21,6 +21,9 @@ class setcalendar {
                 $this->active_year = $_GET['active_year'];
                 $this->active_month = $_GET['active_month'];
                 $this->active_day = '1';
+                if(isset($_GET['active_day'])) {
+                $this->active_day = $_GET['active_day'];
+            }
             } else if (isset($_GET['active_day'])) {
                 $this->active_day = $_GET['active_day'];
             }

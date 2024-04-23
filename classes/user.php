@@ -23,7 +23,7 @@ class user {
         }
         if ($validPassword == TRUE) {
             $password = md5($password);
-            $query = "SELECT id, email, password FROM user WHERE email = '" . $email . "' AND password ='$password'";
+            $query = "SELECT id, email, password,adminrole FROM user WHERE email = '" . $email . "' AND password ='$password'";
 
             $checkU = mysqli_query($this->conn, $query)
                     or die(mysqli_error($this->conn))
@@ -35,24 +35,30 @@ class user {
 
                 /* extract the required variables from recordset array */
                 $userid = $row['id'];
+                $adminrole = $row['adminrole'];
+                
+                $_SESSION["user"]["adminrole"] = $adminrole;
                 $_SESSION["user"]["email"] = $email;
                 $_SESSION["user"]["id"] = $userid;
+
                 header("Location: index.php?page=appointment&event=user_appointment");
             }
         }
     }
 
-    function logout() {
+    public function logout() {
+       
 // Initialize the session.
 // Unset all of the session variables.
-        if(isset($_SESSION["user"]["email"])&& isset($_SESSION["user"]["id"]))
-        {
-        unset($_SESSION["user"]["email"]);
-        unset($_SESSION["user"]["id"]);
+         if (isset($_SESSION["user"]["email"]) || isset($_SESSION["user"]["id"]) ||  isset($_SESSION["user"]["adminrole"])){
+            unset($_SESSION["user"]["email"]);
+            unset($_SESSION["user"]["id"]);
+            unset($_SESSION["user"]["adminrole"]);
+      
 // Finally, destroy the session.    
 // Include URL for Login page to login again.
-        header("Location: index.php?section=home");
-        exit();
+            header("Location: index.php");
+            exit();
         }
     }
 }

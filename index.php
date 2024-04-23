@@ -8,15 +8,15 @@
 <body>
 <?php
 session_start();
-    // Check if the announcement message is set
+    // Prüfen, ob "announcement" Nachricht  bereits eingestellt ist
     if (isset($_SESSION['announcement'])) {
-        // Display the announcement message
+        //"announcement" Nachricht wird gezeigt
         echo '<div style="background-color: #FFFFCC; padding: 10px; max-width: 400px; margin: 0 auto; text-align: center;">' . $_SESSION['announcement'] . '</div>';
         
-        // Unset the announcement message to prevent it from being displayed again
+        // Die Ansage zurücksetzen, um zu verhindern, dass sie erneut angezeigt wird
         unset($_SESSION['announcement']);
     }
-    
+  //alle Seiten und das Layout benötigen   
 require_once 'router.php';
 require_once("config.php");
 

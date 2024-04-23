@@ -1,3 +1,4 @@
+<!-- Anmeldeformular -->
 <h1>REGISTIEREN</h1>
 <form id="myform" action="index.php?page=register&event=user_register" method="post">
     <div>Vorname</div>
@@ -14,4 +15,3 @@
     <button type="submit">Einreichen</button>
 </form>
 
-<a href="resetRequest.php"></a>

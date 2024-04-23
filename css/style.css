@@ -50,7 +50,7 @@ h2 {
 }
 
 #content {
-    margin-top: 100px;
+    margin-top: 80px;
 
 }
 
@@ -401,4 +401,11 @@ ul {
 
 .grid-item1 .header .month-year  a.next{
     right:0px;
+}
+/* Um sicherzustellen, dass eine großen Anzahl von Daten für die Verwaltung immer sichtbar ist*/
+#userlist, #appointmentlist{
+    max-width: 100%; 
+    margin: auto 0; 
+    max-height: 80vh; 
+    overflow: auto;
 }

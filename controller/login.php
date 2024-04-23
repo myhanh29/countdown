@@ -19,15 +19,11 @@ class login extends controller {
    public function user_logout() {
         $user = new user();
         $user->logout();
+       
     }
 }
 
-$loginController = new login();
 
-// Check if the logout action is triggered
-if (isset($_GET['action']) && $_GET['action'] == 'logout') {
-    $loginController->user_logout();
-}
 
 
 

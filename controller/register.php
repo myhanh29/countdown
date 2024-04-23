@@ -15,23 +15,16 @@ class register extends controller {
             $lastname = htmlspecialchars($_POST['lastname']);
             $email = htmlspecialchars($_POST['email']);
             $password = htmlspecialchars($_POST['password']);
-            $password= md5($password);
-            $this->databaseConn->add('user', $firstname, $lastname, $email, $password);
-        
-            session_start();
-            $_SESSION["user"]['email'] = $email; 
-            $_SESSION["user"]['password'] = $password;
+            //Schützen das Passwort bei MD5
+            $password = md5($password);
+            $controller = new Controller();
 
-            header("Location:index.php");
-            exit();
-            
+            $this->databaseConn = $controller->connection; // Verbinden mit dem Datenbank
+            $this->databaseConn->add('user', $firstname, $lastname, $email, $password);
+            //Nach erfolgreicher Registierung wird Nutzer sich automatisch angemeldet
+            $user = new user();
+            //Nutzen $_POST['password'], denn das Password wird in der Funktion Login in Klasse user mit MD5 umgewandelt
+            $user->login($_POST['password'], $email);
         }
     }
 }
-
-$controller = new Controller();
-// Instantiate register and pass the database connection
-$register = new Register();
-$register->databaseConn = $controller->connection; // Access the database connection property
-// Call the user_register method
-$register->user_register();

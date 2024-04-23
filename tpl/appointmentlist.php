@@ -1,9 +1,10 @@
-<?php $appointmentlist = new appointmentlist();
+<?php
+$appointmentlist = new appointmentlist();
 $appointments = $appointmentlist->user_appointmentlist();
 ?>
 
-<div style='display: flex; justify-content: center;'>
-    <table style="margin-top:-40px; text-align: center;" border='1' cellspacing='10' width='80%' bgcolor='#E8E8E8'> 
+<div id="appointmentlist" style='display: flex; justify-content: center;'>
+    <table style="margin-top:0px; text-align: center;" border='1' cellspacing='10' width='80%' bgcolor='#E8E8E8'> 
         <tr>
             <td width=100 style='font-weight: bold;'>Id</td> 
             <td width=100 style='font-weight: bold;'>Name</td> 
@@ -15,7 +16,7 @@ $appointments = $appointmentlist->user_appointmentlist();
             <td width=100 style='font-weight: bold;'>Benutzername</td> 
             <td width=100 style='font-weight: bold;'>Aktion</td> 
         </tr>
-        <?php foreach ($appointments as $row) { ?>
+<?php foreach ($appointments as $row) { ?>
 
             <tr>
                 <td><?php echo $row['id']; ?></td>
@@ -29,20 +30,19 @@ $appointments = $appointmentlist->user_appointmentlist();
                     $priorities = array(
                         'normal' => 'Normal',
                         'Important' => 'Wichtig',
-                        'Notimportant' => 'Nicht wichtig'
+                        'unimportant' => 'Unwichtig'
                     );
 
                     $selected_label = $priorities[$selected_priority];
                     echo $selected_label;
-                
-                ?></td>
-            <td><?php echo $row['firstname']; ?> </td>
-            <td>
-                <a href='index.php?page=appointment&event=user_editappointment&id=<?php echo $row['id']; ?>' style='background-color: #fff2e6;border: 1px solid black; text-decoration: none; color: black;'>Bearbeiten</a>
-                <br>
-                <a href='index.php?page=appointment&event=user_deleteappointment&id=<?php echo $row['id']; ?>' onclick="myFunction()" style='background-color: #fff2e6;border: 1px solid black; text-decoration: none; color: black;'>Loeschen</a>
-            </td>
-        </tr>
+                    ?></td>
+                <td><?php echo $row['firstname']; ?> </td>
+                <td>
+                    <a href='index.php?page=appointment&event=user_editappointment&id=<?php echo $row['id']; ?>' style='background-color: #fff2e6;border: 1px solid black; text-decoration: none; color: black;'>Bearbeiten</a>
+                    <br>
+                    <a href='index.php?page=appointment&event=user_deleteappointment&id=<?php echo $row['id']; ?>' onclick="myFunction()" style='background-color: #fff2e6;border: 1px solid black; text-decoration: none; color: black;'>Loeschen</a>
+                </td>
+            </tr>
 
         <?php } ?>
     </table>
