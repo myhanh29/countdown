@@ -4,7 +4,7 @@
         $page = "home";
     }
 //Wenn eine fremde Seite gegeben wird, wird NICHT GEFUNDEN gezeigt
-    else if($_GET["page"]!="login" && $_GET["page"]!="register" && $_GET["page"]!="home" && $_GET["page"]!="logout" && $_GET["page"]!="resetRequest"&& $_GET["page"]!="resetPassword"&& $_GET["page"]!="appointment"&& $_GET["page"]!="appointmentlist"&& $_GET["page"]!="calendar"&& $_GET["page"]!="userlist"&& $_GET["page"]!="edituser" )
+    else if($_GET["page"]!="login" && $_GET["page"]!="register" && $_GET["page"]!="home" && $_GET["page"]!="logout" && $_GET["page"]!="resetRequest"&& $_GET["page"]!="resetPassword"&& $_GET["page"]!="appointment"&& $_GET["page"]!="appointmentlist"&& $_GET["page"]!="calendar"&& $_GET["page"]!="userlist"&& $_GET["page"]!="edituser"&& $_GET["page"]!="backgroundchange" )
     {
         die("NICHT GEFUNDEN");
       

@@ -46,6 +46,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <?php if ($_SESSION["user"]["adminrole"] == '1') { ?>   
 
                         <a href="index.php?page=userlist&event=admin_userlist"<?php if ($page == "userlist" && $event == "admin_userlist") { ?> class='active'<?php } ?>>Benutzer Liste</a>
+                        <a href="index.php?page=backgroundchange&event=admin_change"<?php if ($page == "backgroundchange" && $event == "admin_change") { ?> class='active'<?php } ?>>Hintergrund ändern</a>
                         <?php
                     }
                 }
@@ -71,6 +72,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     <script src="javascript/checken.js"></script>
     <script src="javascript/confirm.js"></script>
     <script src="javascript/eventcalendar.js"></script>
+    <script src="javascript/updatebackground.js"></script>
 
 
     <script>
