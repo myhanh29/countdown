@@ -1,14 +1,20 @@
 
 <?php
-require_once 'classes/database.php';
-require_once 'classes/createuserlist.php';
+// Einbindung der erforderlichen Klassen und Dateien
+require_once 'classes/database.php';// Verbindung zur Datenbankklasse herstellen
+require_once 'classes/createuserlist.php';// Klasse zum Erstellen der Benutzerliste einbinden
+// Neue Instanz der Datenbankklasse erstellen
 $db = new Database();
+// Datenbankverbindung herstellen
 $conn = $db->connect();
+// Überprüfen, ob die GET-Variablen korrekt gesetzt sind
 if ($_GET['event'] == 'admin_userlist') {
+    // Neue Instanz der Benutzerlistenklasse erstellen
     $userlist = new userlist();
+      // Benutzerliste abrufen
     $users = $userlist->admin_userlist();
     ?>
-
+ <!-- Benutzerliste anzeigen -->
     <div id="userlist" style='display: flex; justify-content: center;'>
         <table style="margin-top:0px; text-align: center;" border='1' cellspacing='10' width='80%' bgcolor='#E8E8E8'> 
             <tr>
@@ -41,13 +47,16 @@ if ($_GET['event'] == 'admin_userlist') {
     </div>
 <?php } ?>
 <?php
+// Überprüfen, ob die GET-Variablen korrekt gesetzt sind
 if ($_GET['event'] == 'admin_edituser') {
+    // Die ID aus der GET-Variablen extrahieren
     $id = $_GET['id'];
-
+// SQL-Abfrage, um Benutzerdaten basierend auf der ID abzurufen
     $query = "SELECT * FROM user WHERE id='$id'";
     $query_run = mysqli_query($conn, $query);
-
+// Überprüfen, ob Datensätze gefunden wurden
     if (mysqli_num_rows($query_run) > 0) {
+         // Datensätze durchgehen und Benutzerdaten anzeigen
         foreach ($query_run as $row) {
             ?>
             <!-- Benutzerdatenbearbeitungsformular -->

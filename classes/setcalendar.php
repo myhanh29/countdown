@@ -35,13 +35,13 @@ class setcalendar {
         $color = $color ? ' ' . $color : $color;
         $this->events[] = [$name, $date_star, $date_end, $days, $color,$priority];
     }
-
+//Ereignisse in das JSON-Format exportieren
     public function export_events_to_json() {
 
         $json_data = json_encode($this->events);
         return $json_data;
     }
-
+//Kalender ausdrucken
     public function __toString() {
         $num_days = date('t', strtotime($this->active_day . '-' . $this->active_month . '-' . $this->active_year));
         $num_days_last_month = date('j', strtotime('last day of previous month', strtotime($this->active_day . '-' . $this->active_month . '-' . $this->active_year)));
@@ -147,10 +147,10 @@ class setcalendar {
         $html .= '</ul>';
         $html .= '</div>';
 
-        // Initialize an array to store filtered events
+        // Initialisieren eines Arrays zum Speichern gefilterter Ereignisse
         $filteredEvents = [];
 
-        // Loop through each hour and each event to filter events
+        // Schleife durch jede Stunde und jedes Ereignis, um Ereignisse zu filtern
 
         foreach ($this->events as $key => $event) {
             if (date('Y-m-d', strtotime($event[1])) <= date('Y-m-d', mktime(0, 0, 0,$this->active_month, $this->active_day, $this->active_year)) && date('Y-m-d', strtotime($event[2])) >= date('Y-m-d', mktime(0, 0, 0,$this->active_month, $this->active_day, $this->active_year))) {
@@ -159,7 +159,7 @@ class setcalendar {
             }
             $filteredEventsJson = json_encode($filteredEvents);
  
-            // Embed the JSON data into JavaScript variable eventsData
+            // Einbetten der JSON-Daten in die JavaScript-Variable eventsData
             $html .= '<script>';
             $html .= 'var eventsData = ' . $filteredEventsJson . ';';
             $html .= '</script>';
@@ -168,8 +168,8 @@ class setcalendar {
             $html .= '</script>';
         }
        
-        // Convert the filtered events array to JSON
-        // Output the event container div
+        // Konvertieren Sie das gefilterte Ereignis-Array in JSON
+        //Ausgabe des Ereignis-Containers div
         $html .= '<div id="phpEventContainer" class="event-container">';
         $html .= '</div>';
 

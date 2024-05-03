@@ -1,7 +1,7 @@
 <?php
 
 class login extends controller {
-
+//Methode für Benutzer, um sich anzumelden
     public function user_login() {
 
         if (isset($_POST['email']) && isset($_POST['password'])) {
@@ -15,7 +15,7 @@ class login extends controller {
             
         }
     }
-
+//Methode für Benutzer, um sich abzumelden
    public function user_logout() {
         $user = new user();
         $user->logout();

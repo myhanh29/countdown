@@ -1,6 +1,5 @@
-<!-- Anmeldeformular -->
-<h1>REGISTIEREN</h1>
-<form id="myform1" action="index.php?page=register&event=user_register" method="post">
+<h1>ADMIN KONTO ERSTELLEN</h1>
+<form id="myform1" action="install.php?page=setadmin&event=user_createadmin" method="post">
     <div>Vorname</div>
     <input type="text" name="firstname" id="firstname" >
     <div>Nachname</div>
@@ -12,6 +11,6 @@
     <div>Passwort (wiederholt)</div>
     <input type="password" name="password1" id="password1">
     <br>    <br>
-    <button type="submit">Einreichen</button>
+    <button type="submit">Weiter</button>
 </form>
 

@@ -5,7 +5,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHP.php to edit this template
  */
 require_once 'classes/createuserlist.php';
-
+/**
+ * Diese Methode ruft die Benutzerliste für den Administrator ab.
+ * Nur Benutzer mit Administratorberechtigungen können darauf zugreifen.
+ * 
+ * @return array Die Benutzerliste
+ */
 class userlist {
 
     public function admin_userlist() {
@@ -16,12 +21,17 @@ class userlist {
         }
         return $users;
     }
-
+/**
+ * Diese Methode löscht einen Benutzer aus der Benutzerliste.
+ */
     public function admin_deleteuser() {
         $createuserlist = new createuserlist();
         $createuserlist->deleteuser($_GET['id']);
     }
-
+/**
+ * Diese Methode bearbeitet die Daten eines Benutzers.
+ * Sie überprüft, ob Formulardaten gesendet wurden, und aktualisiert entsprechend die Benutzerdaten.
+ */
     public function admin_edituser() {
  
         if (isset($_POST['edit_firstname']) || isset($_POST['edit_lastname']) || isset($_POST['edit_email']) || isset($_POST['edit_password']) || isset($_POST['edit_adminrole'])) {

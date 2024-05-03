@@ -20,6 +20,13 @@ session_start();
 require_once 'router.php';
 require_once("config.php");
 
+    // Überprüfen, ob alle Konfigurationsvariablen definiert sind
+    if (!defined('DBSERVER')&&!defined('DBUSER')&&!defined('DBPASS')&&!defined('DBNAME')|| empty(DBSERVER)&& empty(DBUSER)&& empty(DBNAME)) {
+        //Wenn nicht alles definiert ist, führe ich zur Installation 
+        header("Location: installation/install.php");
+        exit;
+    }
+
 require_once("classes/database.php");
 require_once("classes/user.php");
 $files = glob("controller" . '/*.php');

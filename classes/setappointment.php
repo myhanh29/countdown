@@ -4,6 +4,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHP.php to edit this template
  */
+require_once 'config.php';
 require_once 'database.php';
 require_once 'user.php';
 
@@ -15,7 +16,7 @@ class setappointment {
         $db = new Database();
         $this->conn = $db->connect();
     }
-
+   // Termin hinzufügen
     public function appointment($terminname, $description, $datetime_star, $isactive, $userid,$datetime_end, $priority) {
         $sql = "INSERT INTO appointment (name, description, date_star, is_active, userid, date_end, priority)
     VALUES ('$terminname','$description','$datetime_star','$isactive'-'0','$userid','$datetime_end','$priority')";
@@ -27,29 +28,29 @@ class setappointment {
             return 0;
         }
     }
-
+ // Terminliste abrufen
     public function appointmentlist($userid) {
         $appointments = array();
-// Select database
-        mysqli_select_db($this->conn, "countdown") or die(mysqli_error());
+// Datenbank auswählen
+        mysqli_select_db($this->conn, DBNAME) or die(mysqli_error());
         
 // SQL query
         $admincheck = "SELECT adminrole FROM user WHERE id='$userid'";
         $admin_query = mysqli_query($this->conn, $admincheck);
 
-        if ($admin_query && mysqli_num_rows($admin_query) > 0) {
+        if ($admin_query !== false && mysqli_num_rows($admin_query) > 0) {
             $adminrow = mysqli_fetch_assoc($admin_query);
             $adminrole = $adminrow['adminrole'];
 
-            if ($adminrole == 0||$adminrole == Null) {
+            if ($adminrole == '0'||$adminrole == Null) {
         $strSQL = "SELECT appointment.*, user.firstname FROM appointment INNER JOIN user ON appointment.userid=user.id WHERE user.id='$userid'";
             }
-            else if($adminrole == 1)
+            else if($adminrole == '1')
             {
                   $strSQL = "SELECT appointment.*, user.firstname FROM appointment INNER JOIN user ON appointment.userid=user.id";
             }
         }
-// Execute the query (the recordset $rs contains the result)
+// Ausführen der Abfrage (der Datensatz $rs enthält das Ergebnis)
         $rs = mysqli_query($this->conn, $strSQL);
         while ($row = mysqli_fetch_array($rs)) {
             $appointments[] = $row;
@@ -57,7 +58,7 @@ class setappointment {
         return $appointments;
     }
 
-    //Pruefen der Ersteller des Termines
+    // Prüfen, ob der Benutzer Ersteller des Termins ist
     public function checkappointment($userid, $id) {
         $admincheck = "SELECT adminrole FROM user WHERE id='$userid'";
         $admin_query = mysqli_query($this->conn, $admincheck);
@@ -81,7 +82,7 @@ class setappointment {
             }
         }
     }
-
+ // Termin bearbeiten
     public function editappointment($terminname2, $description2, $datetime_star2,$datetime_end2, $isactive2, $id, $priority2) {
         $query = "UPDATE appointment SET name='$terminname2', description='$description2', date_star='$datetime_star2', date_end='$datetime_end2',is_active=('$isactive2'-'0'), priority='$priority2' WHERE id='$id'";
         $query_run = mysqli_query($this->conn, $query);
@@ -92,7 +93,7 @@ class setappointment {
             $_SESSION['announcement'] = "Etwas ist schief gelaufen!";
         }
     }
-
+// Termin löschen
     public function deleteappointment($id) {
        
         $sql = "DELETE FROM appointment WHERE id='$id' ";

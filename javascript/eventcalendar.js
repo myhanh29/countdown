@@ -1,8 +1,11 @@
-
+//Drucken eventsData und activeDay, die aus "classes/setcalendar.php" übergeben werden
 console.log(eventsData);
 console.log(activeDay);
+
+// Array für aktualisierte Ereignisdaten
 let updatedEventsData = [];
 let columnPosition = 1;
+// Schleife durch alle Ereignisse
 for (var i = 0; i < eventsData.length; i++) {
     var starttimestring = eventsData[i][1];
     var datestartPart = starttimestring.split(" ")[0];
@@ -11,7 +14,7 @@ for (var i = 0; i < eventsData.length; i++) {
     var dateendPart = endtimestring.split(" ")[0];
  console.log(datestartPart);
  console.log(dateendPart);
-
+  // Falls das Ereignis am gleichen Tag beginnt und endet
     if (datestartPart === dateendPart) {
         const evt = {
             starttime: eventsData[i][1],
@@ -26,6 +29,7 @@ for (var i = 0; i < eventsData.length; i++) {
         updatedEventsData.push(evt);
     } else if (datestartPart !== dateendPart)
     {
+          // Verarbeitung von Ereignissen, die über mehrere Tage dauern
         if (activeDay === datestartPart) {
            
             let evt = {
@@ -36,9 +40,6 @@ for (var i = 0; i < eventsData.length; i++) {
                 name: eventsData[i][0],
                 priority: eventsData[i][5]
             };
- console.log(evt);
-            debugger
-
             updatedEventsData.push(evt);
         }
 
@@ -83,7 +84,7 @@ for (var i = 0; i < eventsData.length; i++) {
     }
 
 }
-
+// Darstellung der Ereignisse im Kalender
 const eventContainer = document.getElementById("phpEventContainer");
 let eventContainerHtml = '';
 let currentIndex = 0;
@@ -105,7 +106,7 @@ updatedEventsData.forEach(evt => {
 });
 
 eventContainer.innerHTML = eventContainerHtml;
-
+// Funktionen zur Berechnung von Höhe, Breite, Spaltenposition, Farbe usw. werden ebenfalls definiert
 function getHeight(starttime, endtime, datestart, dateend) {
 
     const start = new Date(Date.parse(starttime));

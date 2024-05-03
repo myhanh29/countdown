@@ -1,6 +1,7 @@
-/* 
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Other/javascript.js to edit this template
+/*
+ * Diese Funktion zeigt ein Bestätigungsdialogfeld an, um den Benutzer zu fragen, ob er den Termin löschen möchte.
+ * Wenn der Benutzer auf "OK" klickt, wird die Aktion ausgeführt.
+ * Wenn der Benutzer auf "Abbrechen" klickt, wird die Standardaktion (das Löschen des Termins) verhindert.
  */
 function myFunction() {
   if (confirm("Möchten Sie den Termin löschen?") == true) {
@@ -9,7 +10,11 @@ function myFunction() {
      event.preventDefault();  
   }
 }
-
+/*
+ * Diese Funktion zeigt ein Bestätigungsdialogfeld an, um den Benutzer zu fragen, ob er diesen Nutzer löschen möchte.
+ * Wenn der Benutzer auf "OK" klickt, wird die Aktion ausgeführt.
+ * Wenn der Benutzer auf "Abbrechen" klickt, wird die Standardaktion (das Löschen des Nutzers) verhindert.
+ */
 function myFunction1() {
   if (confirm("Möchten Sie diesen Nutzer löschen?") == true) {
     

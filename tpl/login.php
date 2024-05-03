@@ -1,4 +1,4 @@
-
+<!-- Anmeldeformular -->
 <h1>Anmelden</h1>
 <form id="myform" action="index.php?page=login&event=user_login" method="post">
     <div>Email</div>
@@ -6,6 +6,7 @@
     <div>Passwort</div>
     <input type="password" name="password" id="password">
     <br>    <br>
+    <!-- Link zum Zurücksetzen des Passworts oder zur Behandlung von Anmeldeproblemen -->
     <a     href="index.php?page=resetRequest&event=user_reset"
            tabindex="0" 
     >Passwort vergessen / Probleme bei der Anmeldung</a>

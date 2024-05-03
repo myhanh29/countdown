@@ -1,8 +1,11 @@
-/* 
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Other/javascript.js to edit this template
+/*
+ * Dieses Skript überwacht das Absenden eines Formulars mit der ID 'myform'.
+ * Es überprüft, ob das eingegebene Passwort mit der Passwortbestätigung übereinstimmt.
+ * Wenn die Passwörter nicht übereinstimmen, wird eine Warnmeldung angezeigt und das Absenden des Formulars verhindert.
+ * Es überprüft auch, ob alle erforderlichen Felder ausgefüllt sind.
+ * Wenn nicht, wird eine Warnmeldung angezeigt und das Absenden des Formulars verhindert.
  */
-document.getElementById('myform').addEventListener('submit', function (event) {
+document.getElementById('myform1').addEventListener('submit', function (event) {
     var firstname = document.getElementById('firstname').value;
     var lastname = document.getElementById('lastname').value;
     var email = document.getElementById('email').value;
@@ -10,11 +13,11 @@ document.getElementById('myform').addEventListener('submit', function (event) {
     var password1 = document.getElementById('password1').value;
     if(password !== password1)
     {
-        alert('Password is not the same!');
-        event.preventDefault(); // Prevent form submission
+        alert('Das Passwort ist nicht dasselbe!');
+        event.preventDefault(); // Verhinderung der Übertragung von Formularen
     };
     if(firstname===null||firstname==='' &&lastname===null||lastname ===''&&email===null||email===''&&password===null||password===''&&password1===null||password1==='' ){
-      alert('Informationen are not 100% given!');
+      alert('Informationen sind nicht 100% gegeben!');
        event.preventDefault();  
     }
     /* if(lastname===null||lastname ==='' ){

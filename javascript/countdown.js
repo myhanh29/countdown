@@ -1,6 +1,8 @@
-/* 
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Other/javascript.js to edit this template
+/*
+ * Diese Funktion initialisiert einen Countdown-Timer innerhalb eines Rasters (Grid-Element).
+ * Sie berechnet die verbleibende Zeit zwischen dem aktuellen Datum und dem Enddatum,
+ * und aktualisiert dann die HTML-Elemente, die Tage, Stunden, Minuten und Sekunden anzeigen,
+ * alle Sekunde, bis der Countdown null erreicht.
  */
 function initializeCountdown(gridItem) {
     var endDateString = gridItem.querySelector("#datetime_star").getAttribute("value");

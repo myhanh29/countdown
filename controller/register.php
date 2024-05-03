@@ -6,7 +6,7 @@
  */
 
 class register extends controller {
-
+//Methode für neuen Benutzer, um sich zu registieren 
     function user_register() {
 
         //$database->conn->select_db(DBNAME);

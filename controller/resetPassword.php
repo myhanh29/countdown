@@ -3,14 +3,14 @@
 require_once 'classes/database.php';
 
 class resetPassword extends controller {
-
+// Diese Variable speichert die Verbindung zur Datenbank.
     public $conn;
-
+//Der Konstruktor initialisiert die Verbindung zur Datenbank
     public function __construct() {
         $db = new Database();
         $this->conn = $db->connect();
     }
-
+//Diese Methode ermöglicht es Benutzern, ein neues Passwort festzulegen, wenn sie einen gültigen Zurücksetzungscode haben.
     public function user_newPassword() {
         if (!isset($_GET["code"])) {
             exit("Seite nicht finden können");

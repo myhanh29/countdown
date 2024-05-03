@@ -6,6 +6,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 <html>
 
     <head>
+        <!-- Einbindung von externen Stylesheets und Titel der Webseite -->
         <link rel="stylesheet" href="css/style.css">
         <title>COUNTDOWN</title>
         <meta charset="UTF-8">
@@ -14,15 +15,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
 
     <body>
+        <!-- Hintergrundbild der Webseite -->
         <div class="image"></div>
+        <!-- Hauptcontainer der Webseite -->
         <div class="<?php echo ($page === 'appointmentlist') ? 'container1' : 'container'; ?>">
+            <!-- Navigationsleiste -->
             <div class="topnav">
            
-                <!-- Prüfen, ob man sich schon angemeldet hat. Wenn nein ist, werden Anmelden und Registieren gezeigt -->
+                <!-- Links zur Anmeldung und Registrierung, abhängig davon, ob der Benutzer angemeldet ist -->
                 <?php if (!isset($_SESSION["user"]["email"])) { ?><a href="index.php?page=login" <?php if ($page == "login") { ?> class='active' <?php } ?> >Anmelden</a><?php } ?>
                 <?php if (!isset($_SESSION["user"]["email"])) { ?><a href="index.php?page=register" <?php if ($page == "register") { ?> class='active' <?php } ?> >Registieren</a> <?php } ?>
 
-                <!-- Prüfen, ob man sich schon angemeldet hat. Wenn ja ist, werden Abmelden, Kalender, Termine Liste und Termin erstellen gezeigt-->
+                  <!-- Links zum Abmelden und zu verschiedenen Seiten, abhängig davon, ob der Benutzer angemeldet ist -->
                 <?php if (isset($_SESSION["user"]["email"])) { ?>
                     <a href="javascript: user_logout();">Abmelden</a>
                 <?php } ?>
@@ -58,23 +62,25 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <a <?php if ($page == "home") { ?> class="active" <?php } ?> href="index.php">Startseite</a>
                 <?php } ?>
             </div>
-
+<!-- Inhalt der Seite -->
             <div id='content'>
 
                 <?php
+                 // Einbindung des Templates basierend auf der Variable $page
                 require_once("tpl/$page.php");
                 ?>
 
             </div>
         </div>
     </body>
+    <!-- Einbindung von JavaScript-Dateien -->
     <script src="javascript/countdown.js"></script>
     <script src="javascript/checken.js"></script>
     <script src="javascript/confirm.js"></script>
     <script src="javascript/eventcalendar.js"></script>
     <script src="javascript/updatebackground.js"></script>
 
-
+<!-- JavaScript-Funktion zum Abmelden des Benutzers -->
     <script>
         function user_logout() {
             window.location.href = 'index.php?page=login&event=user_logout';

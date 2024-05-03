@@ -5,14 +5,16 @@ require_once 'classes/sentmail.php';
 require_once 'classes/database.php';
 
 class resetRequest extends controller {
-
+// Diese Variable speichert die Verbindung zur Datenbank.
     public $conn;
-
+// Der Konstruktor initialisiert die Verbindung zur Datenbank.
     public function __construct() {
         $db = new Database();
         $this->conn = $db->connect();
     }
-
+ /* Diese Methode setzt das Passwort eines Benutzers zurück.
+ * Wenn die E-Mail des Benutzers im POST-Array vorhanden ist, wird ein Zurücksetzungslink per E-Mail gesendet.
+ */
     public function user_reset() {
         if (isset($_POST['email'])) {
             $emailTo = $_POST['email'];
