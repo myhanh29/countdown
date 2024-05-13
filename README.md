@@ -25,15 +25,15 @@ Installation und Ausführung
 
 Verwendete Technologien
 -----
-1.PHP
+1. PHP
 
-2.Javascript
+2. Javascript
 
-3.MySQL
+3. MySQL
 
-4.CSS
+4. CSS
 
-5.GitHub 
+5. GitHub 
 
 Autor:
 -----
